@@ -1,6 +1,8 @@
 {
   "HomePage": {
     "searchPlaceholder": "Search for a product",
-    "searchLabel": "Search"
+    "searchLabel": "Search",
+    "accountLabel": "My Account",
+    "linkAuth": "Signin or Register"
   }
 }

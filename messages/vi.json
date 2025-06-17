@@ -1,6 +1,8 @@
 {
     "HomePage": {
       "searchPlaceholder": "Tìm kiếm sản phẩm",
-      "searchLabel": "Tìm kiếm"
+      "searchLabel": "Tìm kiếm",
+      "accountLabel": "Tài khoản của tôi",
+      "linkAuth": "Đăng nhập hoặc Đăng ký"
     }
 }

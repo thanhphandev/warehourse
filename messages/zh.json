@@ -1,6 +1,8 @@
 {
     "HomePage": {
         "searchPlaceholder": "搜索产品",
-        "searchLabel": "搜索"
+        "searchLabel": "搜索",
+        "accountLabel": "我的账户",
+        "linkAuth": "登录或注册"
     }
 }
