@@ -12,10 +12,6 @@ function ProductDetailPageContent() {
   const params = useParams();
   const productSlug = params.slug as string;
 
-  // In a real app, you'd convert slug to ID via API call
-  // For now, we'll assume slug is the ID
-  const productId = productSlug;
-
   return (
     <div className="min-h-screen bg-gray-50">      
       <div className="container mx-auto py-8">
@@ -31,7 +27,7 @@ function ProductDetailPageContent() {
 
         {/* Product Detail */}
         <div className="bg-white rounded-lg shadow-sm p-6">
-          <ProductDetail productSlug={productId} />
+          <ProductDetail productSlug={productSlug} />
         </div>
       </div>
     </div>

@@ -52,7 +52,6 @@ export default function AppProvider({ children }: { children: React.ReactNode })
         },
       }}
     />
-
     {children}
   </QueryProvider>;
 }

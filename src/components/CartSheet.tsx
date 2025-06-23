@@ -10,8 +10,7 @@ import {
   SheetTrigger,
 } from '@/components/ui/sheet';
 import { useCartStore } from '@/app/stores/cartStore';
-import toast from 'react-hot-toast';
-import { useAuthStore } from '@/app/stores/authStore';
+import { useRouter } from 'next/navigation';
 
 export function CartSheet() {
   const {
@@ -22,20 +21,10 @@ export function CartSheet() {
     removeItem,
     clearCart,
   } = useCartStore();
-  const { isAuthenticated } = useAuthStore();
+  const router = useRouter();
 
   function handleCheckout() {
-    if (!isAuthenticated) {
-      toast.error('Please log in to proceed to checkout');
-      return;
-    }
-    if (items.length === 0) {
-      toast.error('Your cart is empty');
-      return;
-    }
-    clearCart();
-    toast.success('Checkout process started');
-
+    router.push('/checkout');
   }
 
   return (
