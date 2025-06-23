@@ -16,6 +16,8 @@ export interface IOrderStatusHistory {
 
 export interface IOrderPayment {
   method: string;
+  provider: string; // e.g., 'stripe', 'paypal'
+  transaction_id: string;
   status: 'pending' | 'completed' | 'failed';
 }
 
@@ -51,6 +53,8 @@ const OrderStatusHistorySchema = new Schema<IOrderStatusHistory>({
 
 const OrderPaymentSchema = new Schema<IOrderPayment>({
   method: { type: String, required: true },
+  provider: { type: String }, // e.g., 'stripe', 'paypal'
+  transaction_id: { type: String, required: true },
   status: { type: String, enum: ['pending', 'completed', 'failed'], required: true },
 });
 

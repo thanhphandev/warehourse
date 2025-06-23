@@ -9,7 +9,7 @@
     "login": {
       "title": "Sign in to your account",
       "subtitle": "Or",
-      "signupLink": "start your 14-day free trial"
+      "signupLink": "Create a new account"
     },
     "logout": {
       "loggingOut": "Logging out...",

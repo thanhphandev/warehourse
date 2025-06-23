@@ -40,8 +40,15 @@ const LoginPage = () => {
 
   useEffect(() => {
     const message = searchParams.get('message');
+
     if (message === 'signup-success') {
       setSuccessMessage(t('messages.signupSuccess'));
+
+      const timeout = setTimeout(() => {
+        setSuccessMessage('');
+      }, 3000);
+
+      return () => clearTimeout(timeout);
     }
   }, [searchParams, t]);
 

@@ -3,7 +3,7 @@ import mongoose, { Schema, Document, Types } from 'mongoose';
 export interface IPromotionCondition {
   min_spend: number;
   applies_to: {
-    type: 'CATEGORIES' | 'BRANDS' | 'VARIANTS';
+    type: 'ALL' | 'CATEGORIES' | 'BRANDS'| 'PRODUCTS'| 'VARIANTS';
     ids: Types.ObjectId[];
   };
 }
@@ -11,13 +11,14 @@ export interface IPromotionCondition {
 export interface IPromotion extends Document {
   name: string;
   code: string;
-  type: 'PERCENTAGE_OFF' | 'FIXED_AMOUNT_OFF';
+  type: 'PERCENTAGE_OFF' | 'FIXED_AMOUNT_OFF' | 'FREE_SHIPPING';
   value: number;
   conditions: IPromotionCondition;
   start_date: Date;
   end_date: Date;
   usage_limit: number;
   usage_count: number;
+  usage_limit_per_user: Number,
   is_active: boolean;
   created_at: Date;
   updated_at: Date;
@@ -31,7 +32,7 @@ const PromotionSchema = new Schema<IPromotion>({
   conditions: {
     min_spend: { type: Number, required: true },
     applies_to: {
-      type: { type: String, enum: ['CATEGORIES', 'BRANDS', 'VARIANTS'], required: true },
+      type: { type: String, enum: ['ALL', 'CATEGORIES', 'BRANDS', 'PRODUCTS', 'VARIANTS'], required: true },
       ids: [{ type: Schema.Types.ObjectId, required: true }],
     },
   },
@@ -39,6 +40,7 @@ const PromotionSchema = new Schema<IPromotion>({
   end_date: { type: Date, required: true },
   usage_limit: { type: Number, required: true },
   usage_count: { type: Number, default: 0 },
+  usage_limit_per_user: { type: Number, default: 1 },
   is_active: { type: Boolean, default: true },
   created_at: { type: Date, default: Date.now },
   updated_at: { type: Date, default: Date.now },

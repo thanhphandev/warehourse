@@ -21,6 +21,7 @@ export interface IUser extends Document {
     number: string;
     is_verified: boolean;
   };
+  provider: 'credentials' | 'google' | 'github';
   password: string;
   role: 'customer' | 'admin' | 'manager';
   addresses: IUserAddress[];
@@ -53,7 +54,11 @@ const UserSchema = new Schema<IUser>({
   password: { type: String, required: true },
   role: { type: String, enum: ['customer', 'admin', 'manager'], default: 'customer' },
   addresses: [UserAddressSchema],
-  wishlist: [{ type: Schema.Types.ObjectId, ref: 'Product' }],
+  provider: {
+    type: String,
+    enum: ['credentials', 'google', 'github'],
+    default: 'credentials',
+  },
   created_at: { type: Date, default: Date.now },
   updated_at: { type: Date, default: Date.now },
 });

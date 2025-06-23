@@ -1,0 +1,46 @@
+### GET: Lấy danh sách kho
+GET http://localhost:3000/api/warehouse
+Accept: application/json
+
+###
+
+### POST: Tạo kho mới
+POST http://localhost:3000/api/warehouse
+Content-Type: application/json
+
+{
+  "name": "Kho Binh Dđat ",
+  "address": {
+    "street": "Số 12 Nguyễn Văn Cừ",
+    "city": "Long Xduyên",
+    "district": "An Giang"
+  },
+  "is_store": false
+}
+
+###
+
+### PUT: Cập nhật kho
+PUT http://localhost:3000/api/warehouse
+Content-Type: application/json
+
+{
+  "id": "664fd2ec0e5794ecf11c321a",
+  "name": "Kho miền Bắc - Cập nhật",
+  "address": {
+    "street": "Số 25 Trần Duy Hưng",
+    "city": "Hà Nội",
+    "district": "Cầu Giấy"
+  },
+  "is_store": false
+}
+
+###
+
+### DELETE: Xoá kho
+DELETE http://localhost:3000/api/warehouse
+Content-Type: application/json
+
+{
+  "id": "664fd2ec0e5794ecf11c321a"
+}

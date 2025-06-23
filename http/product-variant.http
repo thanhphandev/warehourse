@@ -1,0 +1,43 @@
+### List all variants of a product
+GET http://localhost:3000/api/products/68590e78a2624c42c76556b6/variants
+Accept: application/json
+
+### Create a new variant for a product
+POST http://localhost:3000/api/products/68590e78a2624c42c76556b6/variants
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "Áo sơ mi đen - Size SL",
+  "sku": "SHIRT-BLACK-SL",
+  "price": { "base": 300000, "sale": 250000 },
+  "attributes": [
+    { "key": "color", "value": "white" },
+    { "key": "size", "value": "L" }
+  ],
+  "images": ["https://example.com/image.jpg", "https://example.com/image2.jpg"],
+  "is_default": false,
+  "status": "active"
+}
+
+### Get variant detail
+GET http://localhost:3000/api/variants/6859117fa2624c42c76556d2
+Accept: application/json
+
+### Update variant
+PUT http://localhost:3000/api/variants/6859117fa2624c42c76556d2
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "Áo sơ mi trắng - Size XL",
+  "price": { "base": 260000, "sale": 230000 },
+  "attributes": [
+    { "key": "color", "value": "white" },
+    { "key": "size", "value": "XL" }
+  ]
+}
+
+### Delete variant
+DELETE http://localhost:3000/api/variants/6859117fa2624c42c76556d2
+Accept: application/json
