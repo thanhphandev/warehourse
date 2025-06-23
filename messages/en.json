@@ -4,5 +4,56 @@
     "searchLabel": "Search",
     "accountLabel": "My Account",
     "linkAuth": "Signin or Register"
+  },
+  "auth": {
+    "login": {
+      "title": "Sign in to your account",
+      "subtitle": "Or",
+      "signupLink": "start your 14-day free trial"
+    },
+    "logout": {
+      "loggingOut": "Logging out...",
+      "title": "Logout"
+    },
+    "signup": {
+      "title": "Create an account",
+      "subtitle": "Already have an account?",
+      "loginLink": "Sign in"
+    },
+    "fields": {
+      "name": "Full Name",
+      "email": "Email address",
+      "password": "Password",
+      "confirmPassword": "Confirm Password"
+    },
+    "placeholders": {
+      "name": "John Doe",
+      "email": "email@example.com",
+      "password": "Password",
+      "confirmPassword": "Confirm Password"
+    },
+    "buttons": {
+      "login": "Sign in",
+      "signing-in": "Signing in...",
+      "signup": "Sign up",
+      "signing-up": "Signing up..."
+    },
+    "errors": {
+      "nameRequired": "Name is required",
+      "emailRequired": "Email is required",
+      "emailInvalid": "Email is invalid",
+      "passwordRequired": "Password is required",
+      "passwordMinLength": "Password must be at least 8 characters",
+      "passwordMismatch": "Passwords do not match",
+      "loginFailed": "An unknown error occurred when login. Please try again.",
+      "signupFailed": "An unknown error occurred when signup. Please try again.",
+      "networkError": "A network error occurred. Please try again.",
+      "userExists": "An account with this email already exists.",
+      "invalidCredentials": "Incorrect email or password. Please try again.",
+      "missingFields": "Please fill in all required fields."
+    },
+    "messages": {
+      "signupSuccess": "You have successfully signed up! Please log in."
+    }
   }
 }

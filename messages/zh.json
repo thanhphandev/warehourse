@@ -1,8 +1,59 @@
 {
-    "HomePage": {
-        "searchPlaceholder": "搜索产品",
-        "searchLabel": "搜索",
-        "accountLabel": "我的账户",
-        "linkAuth": "登录或注册"
+  "HomePage": {
+    "searchPlaceholder": "搜索产品",
+    "searchLabel": "搜索",
+    "accountLabel": "我的账户",
+    "linkAuth": "登录或注册"
+  },
+  "auth": {
+    "login": {
+      "title": "登录您的账户",
+      "subtitle": "或",
+      "signupLink": "开始 14 天免费试用"
+    },
+    "signup": {
+      "title": "创建账户",
+      "subtitle": "已有账户？",
+      "loginLink": "登录"
+    },
+    "logout": {
+        "loggingOut": "正在登出...",
+        "title": "登出"
+    },
+    "fields": {
+      "name": "姓名",
+      "email": "电子邮箱",
+      "password": "密码",
+      "confirmPassword": "确认密码"
+    },
+    "placeholders": {
+      "name": "张三",
+      "email": "email@example.com",
+      "password": "密码",
+      "confirmPassword": "再次输入密码"
+    },
+    "buttons": {
+      "login": "登录",
+      "signing-in": "正在登录...",
+      "signup": "注册",
+      "signing-up": "正在注册..."
+    },
+    "errors": {
+      "nameRequired": "姓名不能为空",
+      "emailRequired": "电子邮箱不能为空",
+      "emailInvalid": "电子邮箱格式无效",
+      "passwordRequired": "密码不能为空",
+      "passwordMinLength": "密码至少需要 8 个字符",
+      "passwordMismatch": "两次输入的密码不一致",
+      "loginFailed": "登录失败，请检查您的账户信息。",
+      "signupFailed": "注册失败，请稍后再试。",
+      "networkError": "网络错误，请稍后重试。",
+      "userExists": "该电子邮箱已被注册。",
+      "invalidCredentials": "电子邮箱或密码不正确，请重试。",
+      "missingFields": "请填写所有必填项。"
+    },
+    "messages": {
+      "signupSuccess": "注册成功！请登录。"
     }
+  }
 }

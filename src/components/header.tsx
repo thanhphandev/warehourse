@@ -1,10 +1,16 @@
-import { getTranslations } from 'next-intl/server';
+'use client';
 import React from 'react';
 import { User, ShoppingCart, Search } from 'lucide-react';
 import { LanguageSwitcher } from './language-switcher';
+import { useAuthStore } from '@/app/stores/authStore';
+import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 
-const Header = async () => {
-  const t = await getTranslations('HomePage');
+const Header = () => {
+  const t = useTranslations('HomePage');
+  const tLogout = useTranslations('auth.logout');
+
+  const { user, loading, isAuthenticated, logout} = useAuthStore();
 
   return (
     <div className="bg-blue-600 text-white sticky top-0 z-50">
@@ -31,12 +37,28 @@ const Header = async () => {
         <div className="flex items-center gap-6">
           {/* Account */}
           <div className="flex items-center gap-1 border border-white px-3 py-1 rounded-md cursor-pointer">
-            <User size={20} className='mr-2'/>
-            <div className='flex flex-col text-lg font-bold items-center'>
-              <span>{t("accountLabel")}</span>
-            <span className="text-sm underline">
-              <a href="/login">{t("linkAuth")}</a>
-            </span>
+            <User size={20} className="mr-2" />
+            <div className="flex flex-col text-lg font-bold items-center">
+              {isAuthenticated && user ? (
+                <>
+                  <span>{user.full_name}</span>
+                  <span className="text-sm">{user.email.address}</span>
+                  <button
+                    className="text-xs underline text-red-200 mt-1 disabled:opacity-50"
+                    onClick={logout}
+                    disabled={loading}
+                  >
+                    {loading ? tLogout('loggingOut') : tLogout("title")}
+                  </button>
+                </>
+              ) : (
+                <>
+                  <span>{t('accountLabel')}</span>
+                  <span className="text-sm underline">
+                    <Link href="/auth/login">{t('linkAuth')}</Link>
+                  </span>
+                </>
+              )}
             </div>
           </div>
 
@@ -51,7 +73,7 @@ const Header = async () => {
         </div>
       </div>
 
-      {/* Secondary Navigation (optional) */}
+      {/* Secondary Navigation */}
       <div className="bg-blue-800 text-sm py-2">
         <div className="container mx-auto flex gap-6">
           <span className="hover:underline cursor-pointer">Products</span>

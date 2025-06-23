@@ -1,8 +1,59 @@
 {
-    "HomePage": {
-      "searchPlaceholder": "Tìm kiếm sản phẩm",
-      "searchLabel": "Tìm kiếm",
-      "accountLabel": "Tài khoản của tôi",
-      "linkAuth": "Đăng nhập hoặc Đăng ký"
+  "HomePage": {
+    "searchPlaceholder": "Tìm kiếm sản phẩm",
+    "searchLabel": "Tìm kiếm",
+    "accountLabel": "Tài khoản của tôi",
+    "linkAuth": "Đăng nhập hoặc Đăng ký"
+  },
+  "auth": {
+    "login": {
+      "title": "Đăng nhập vào tài khoản của bạn",
+      "subtitle": "Hoặc",
+      "signupLink": "bắt đầu dùng thử 14 ngày miễn phí"
+    },
+    "signup": {
+      "title": "Tạo tài khoản mới",
+      "subtitle": "Đã có tài khoản?",
+      "loginLink": "Đăng nhập"
+    },
+    "logout": {
+      "loggingOut": "Đang đăng xuất...",
+      "title": "Đăng xuất"
+    },
+    "fields": {
+      "name": "Họ và tên",
+      "email": "Địa chỉ email",
+      "password": "Mật khẩu",
+      "confirmPassword": "Xác nhận mật khẩu"
+    },
+    "placeholders": {
+      "name": "Nguyễn Văn A",
+      "email": "email@ví dụ.com",
+      "password": "Mật khẩu",
+      "confirmPassword": "Nhập lại mật khẩu"
+    },
+    "buttons": {
+      "login": "Đăng nhập",
+      "signing-in": "Đang đăng nhập...",
+      "signup": "Đăng ký",
+      "signing-up": "Đang đăng ký..."
+    },
+    "errors": {
+      "nameRequired": "Vui lòng nhập họ tên",
+      "emailRequired": "Vui lòng nhập email",
+      "emailInvalid": "Email không hợp lệ",
+      "passwordRequired": "Vui lòng nhập mật khẩu",
+      "passwordMinLength": "Mật khẩu phải có ít nhất 8 ký tự",
+      "passwordMismatch": "Mật khẩu không khớp",
+      "loginFailed": "Đã có lỗi xảy ra khi đăng nhập. Vui lòng thử lại.",
+      "signupFailed": "Đã có lỗi xảy ra khi đăng ký. Vui lòng thử lại.",
+      "networkError": "Có lỗi mạng xảy ra. Vui lòng thử lại.",
+      "userExists": "Email này đã được đăng ký.",
+      "invalidCredentials": "Email hoặc mật khẩu không chính xác. Vui lòng thử lại.",
+      "missingFields": "Vui lòng điền đầy đủ các trường bắt buộc."
+    },
+    "messages": {
+      "signupSuccess": "Đăng ký thành công! Vui lòng đăng nhập."
     }
+  }
 }
