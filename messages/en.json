@@ -55,5 +55,41 @@
     "messages": {
       "signupSuccess": "You have successfully signed up! Please log in."
     }
+  },
+  "footer": {
+    "newsletter": {
+      "title": "Subscribe to our newsletter",
+      "description": "Get information about new products and special promotions",
+      "placeholder": "Enter your email",
+      "button": "Subscribe"
+    },
+    "social": {
+      "title": "Follow us"
+    },
+    "links": {
+      "about": {
+        "title": "About Warehouse",
+        "aboutUs": "About us",
+        "careers": "Careers",
+        "storeLocator": "Store Locator"
+      },
+      "support": {
+        "title": "Customer Support",
+        "helpCenter": "Help Center",
+        "trackOrder": "Track Order",
+        "returns": "Returns Policy",
+        "shipping": "Shipping Info"
+      },
+      "policies": {
+        "title": "Policies",
+        "privacy": "Privacy Policy",
+        "terms": "Terms of Service",
+        "cookies": "Cookie Policy"
+      },
+      "payments": {
+        "title": "Payment Methods"
+      }
+    },
+    "copyright": "© {year} Warehouse. All rights reserved."
   }
 }

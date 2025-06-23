@@ -17,8 +17,8 @@
       "loginLink": "登录"
     },
     "logout": {
-        "loggingOut": "正在登出...",
-        "title": "登出"
+      "loggingOut": "正在登出...",
+      "title": "登出"
     },
     "fields": {
       "name": "姓名",
@@ -55,5 +55,41 @@
     "messages": {
       "signupSuccess": "注册成功！请登录。"
     }
+  },
+  "footer": {
+    "newsletter": {
+      "title": "订阅我们的新闻通讯",
+      "description": "获取新产品信息和特别优惠活动。",
+      "placeholder": "请输入您的电子邮箱",
+      "button": "订阅"
+    },
+    "social": {
+      "title": "关注我们"
+    },
+    "links": {
+      "about": {
+        "title": "关于 Warehouse",
+        "aboutUs": "关于我们",
+        "careers": "招聘信息",
+        "storeLocator": "门店查询"
+      },
+      "support": {
+        "title": "客户支持",
+        "helpCenter": "帮助中心",
+        "trackOrder": "订单追踪",
+        "returns": "退换政策",
+        "shipping": "运输信息"
+      },
+      "policies": {
+        "title": "政策条款",
+        "privacy": "隐私政策",
+        "terms": "服务条款",
+        "cookies": "Cookie 政策"
+      },
+      "payments": {
+        "title": "支付方式"
+      }
+    },
+    "copyright": "© {year} Warehouse。保留所有权利。"
   }
 }

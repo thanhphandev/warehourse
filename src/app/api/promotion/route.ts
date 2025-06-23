@@ -1,9 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Promotion from '@/models/promotion';
+import { connectDb } from '@/lib/mongodb';
 
 // GET: List all promotions
 export async function GET() {
   try {
+    await connectDb();
     const promotions = await Promotion.find();
     return NextResponse.json({
       success: true,
@@ -25,6 +27,7 @@ export async function GET() {
 // POST: Create a new promotion
 export async function POST(req: NextRequest) {
   try {
+    await connectDb();
     const body = await req.json();
     const promotion = await Promotion.create(body);
     return NextResponse.json({

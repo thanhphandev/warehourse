@@ -1,10 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Promotion from '@/models/promotion';
+import { connectDb } from '@/lib/mongodb';
 
 // GET: Get promotion detail
-export async function GET(_req: NextRequest, { params }: { params: { id: string } }) {
+export async function GET(_req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
-    const promotion = await Promotion.findById(params.id);
+    const { id } = await params;
+    await connectDb();
+    const promotion = await Promotion.findById(id);
     if (!promotion) {
       return NextResponse.json({
         success: false,
@@ -31,10 +34,12 @@ export async function GET(_req: NextRequest, { params }: { params: { id: string 
 }
 
 // PUT: Update promotion
-export async function PUT(req: NextRequest, { params }: { params: { id: string } }) {
+export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
+    const { id } = await params;
+    await connectDb();
     const body = await req.json();
-    const promotion = await Promotion.findByIdAndUpdate(params.id, body, { new: true });
+    const promotion = await Promotion.findByIdAndUpdate(id, body, { new: true });
     if (!promotion) {
       return NextResponse.json({
         success: false,
@@ -61,9 +66,11 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
 }
 
 // DELETE: Delete promotion
-export async function DELETE(_req: NextRequest, { params }: { params: { id: string } }) {
+export async function DELETE(_req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
-    const promotion = await Promotion.findByIdAndDelete(params.id);
+    const { id } = await params;
+    await connectDb();
+    const promotion = await Promotion.findByIdAndDelete(id);
     if (!promotion) {
       return NextResponse.json({
         success: false,

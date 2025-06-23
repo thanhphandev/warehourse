@@ -3,6 +3,7 @@ import { z } from 'zod';
 export const envSchema = z.object({
     MONGO_URI: z.string().nonempty(),
     JWT_SECRET: z.string().nonempty(),
+    NEXT_PUBLIC_SITE_URL: z.string().url().nonempty(),
 })
 
 const parsedEnv = envSchema.safeParse(process.env);

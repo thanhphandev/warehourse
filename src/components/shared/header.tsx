@@ -1,0 +1,221 @@
+'use client';
+
+import React, { memo } from 'react';
+import { User, Search, ChevronDown, ShoppingBag } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Avatar, AvatarFallback } from '@/components/ui/avatar';
+import { 
+  DropdownMenu, 
+  DropdownMenuContent, 
+  DropdownMenuItem, 
+  DropdownMenuSeparator, 
+  DropdownMenuTrigger 
+} from '@/components/ui/dropdown-menu';
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from '@/components/ui/navigation-menu';
+import { Badge } from '@/components/ui/badge';
+import { LanguageSwitcher } from '../language-switcher';
+import { CartSheet } from '../CartSheet';
+import { useAuthStore } from '@/app/stores/authStore';
+import Link from 'next/link';
+import { useTranslations } from 'next-intl';
+import { ICategory } from '@/models/category';
+
+interface HeaderProps {
+  categories: ICategory[];
+}
+
+const Header = ({ categories } : HeaderProps) => {
+  const t = useTranslations('HomePage');
+  const ta = useTranslations("auth");
+  const { user, loading, isAuthenticated, logout } = useAuthStore();
+
+  // Process categories
+  const parentCategories = categories.filter((cat: ICategory) => cat.ancestors.length == 0) || [];
+  const childCategories = categories.filter((cat: ICategory) => cat.ancestors.length > 0) || [];
+
+  const categoriesWithChildren = parentCategories.map((parent: ICategory) => {
+    const children = childCategories.filter((child: ICategory) =>
+      child.parent_id?.toString() === (parent._id as string).toString()
+    );
+    return { ...parent, children };
+  });
+
+  return (
+    <header className="sticky top-0 z-50 w-full border-b bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 backdrop-blur supports-[backdrop-filter]:bg-blue-600/95">
+      {/* Main Header */}
+      <div className="container mx-auto px-4">
+        <div className="flex h-16 items-center justify-between">
+          {/* Logo */}
+          <Link href="/" className="flex items-center space-x-2 hover:opacity-80 transition-opacity">
+            <div className="flex items-center gap-2">
+              <div className="h-8 w-8 rounded-full bg-white/20 flex items-center justify-center">
+                <ShoppingBag className="h-5 w-5 text-white" />
+              </div>
+              <span className="text-xl font-bold text-white hidden sm:inline-block">WareHouse</span>
+            </div>
+          </Link>
+
+          {/* Search Bar */}
+          <div className="flex-1 max-w-2xl mx-4 sm:mx-8">
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+              <Input
+                type="text"
+                placeholder={t('searchPlaceholder')}
+                className="w-full pl-10 bg-white/95 border-white/20 text-gray-900 placeholder:text-gray-500 focus:bg-white transition-colors"
+                aria-label={t('searchLabel')}
+              />
+            </div>
+          </div>
+
+          {/* Actions */}
+          <div className="flex items-center space-x-4">
+            {/* User Account */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button 
+                  variant="ghost" 
+                  className="flex items-center space-x-2 text-white hover:bg-white/10 border border-white/20"
+                >
+                  <Avatar className="h-6 w-6">
+                    <AvatarFallback className="bg-white/20 text-white text-xs">
+                      {isAuthenticated && user ? user.full_name.charAt(0).toUpperCase() : <User className="h-4 w-4" />}
+                    </AvatarFallback>
+                  </Avatar>
+                  <div className="hidden sm:block text-left">
+                    <div className="text-sm font-medium">
+                      {isAuthenticated && user ? user.full_name : t('accountLabel')}
+                    </div>
+                    {isAuthenticated && user && (
+                      <div className="text-xs text-white/80 truncate max-w-32">
+                        {user.email.address}
+                      </div>
+                    )}
+                  </div>
+                  <ChevronDown className="h-4 w-4" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-56">
+                {isAuthenticated && user ? (
+                  <>
+                    <div className="px-2 py-1.5">
+                      <p className="text-sm font-medium">{user.full_name}</p>
+                      <p className="text-xs text-muted-foreground">{user.email.address}</p>
+                    </div>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem asChild>
+                      <Link href="/profile">Profile</Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                      <Link href="/orders">Orders</Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem 
+                      onClick={logout}
+                      disabled={loading}
+                      className="text-red-600 focus:text-red-600"
+                    >
+                      {loading ? ta('logout.loggingOut') : ta("logout.title")}
+                    </DropdownMenuItem>
+                  </>
+                ) : (
+                  <>
+                    <DropdownMenuItem asChild>
+                      <Link href="/auth/login">{ta("buttons.login")}</Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                      <Link href="/auth/signup">{ta("buttons.signup")}</Link>
+                    </DropdownMenuItem>
+                  </>
+                )}
+              </DropdownMenuContent>
+            </DropdownMenu>
+
+            {/* Cart */}
+            <CartSheet />
+
+            {/* Language Switcher */}
+            <div className="hidden sm:block">
+              <LanguageSwitcher />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Navigation Bar */}
+      <div className="border-t border-white/10 bg-blue-800/50">
+        <div className="container mx-auto flex justify-center px-4">
+          <NavigationMenu>
+            <NavigationMenuList>
+              {categories.length > 0 ? (
+                <>
+                  {categoriesWithChildren.map((category) => (
+                    <NavigationMenuItem key={category._id as string} className="relative">
+                      {category.children.length > 0 ? (
+                        <>
+                          <NavigationMenuTrigger className="bg-transparent text-white hover:bg-white/10 data-[active]:bg-white/10 data-[state=open]:bg-white/10">
+                            {category.name}
+                          </NavigationMenuTrigger>
+                          <NavigationMenuContent>
+                            <div className="w-64 p-2">
+                              <div className="grid gap-1">
+                                <NavigationMenuLink asChild>
+                                  <Link
+                                    href={`/products?category=${category._id}`}
+                                    className="block px-3 py-2 text-sm font-medium hover:bg-accent rounded-md"
+                                  >
+                                    View All {category.name}
+                                  </Link>
+                                </NavigationMenuLink>
+                                <div className="h-px bg-border my-1" />
+                                {category.children.map((child) => (
+                                  <NavigationMenuLink key={child._id as string} asChild>
+                                    <Link
+                                      href={`/products?category=${child._id}`}
+                                      className="block px-3 py-2 text-sm hover:bg-accent rounded-md"
+                                    >
+                                      {child.name}
+                                    </Link>
+                                  </NavigationMenuLink>
+                                ))}
+                              </div>
+                            </div>
+                          </NavigationMenuContent>
+                        </>
+                      ) : (
+                        <NavigationMenuLink asChild>
+                          <Link
+                            href={`/products?category=${category._id}`}
+                            className="group inline-flex h-9 w-max items-center justify-center rounded-md bg-transparent px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-white/10 focus:bg-white/10 focus:outline-none disabled:pointer-events-none disabled:opacity-50"
+                          >
+                            {category.name}
+                          </Link>
+                        </NavigationMenuLink>
+                      )}
+                    </NavigationMenuItem>
+                  ))}
+                  
+                </>
+              ) : (
+                <div className="flex items-center py-2 px-4 text-white/60">
+                  <span>{"You're have no category"}</span>
+                </div>
+              )}
+            </NavigationMenuList>
+          </NavigationMenu>
+        </div>
+      </div>
+    </header>
+  );
+};
+
+
+export default Header;

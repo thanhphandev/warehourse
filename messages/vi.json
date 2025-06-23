@@ -55,5 +55,41 @@
     "messages": {
       "signupSuccess": "Đăng ký thành công! Vui lòng đăng nhập."
     }
+  },
+  "footer": {
+    "newsletter": {
+      "title": "Đăng ký nhận bản tin",
+      "description": "Nhận thông tin về sản phẩm mới và các chương trình khuyến mãi đặc biệt.",
+      "placeholder": "Nhập email của bạn",
+      "button": "Đăng ký"
+    },
+    "social": {
+      "title": "Theo dõi chúng tôi"
+    },
+    "links": {
+      "about": {
+        "title": "Về Warehouse",
+        "aboutUs": "Về chúng tôi",
+        "careers": "Tuyển dụng",
+        "storeLocator": "Hệ thống cửa hàng"
+      },
+      "support": {
+        "title": "Hỗ trợ khách hàng",
+        "helpCenter": "Trung tâm trợ giúp",
+        "trackOrder": "Theo dõi đơn hàng",
+        "returns": "Chính sách đổi trả",
+        "shipping": "Thông tin vận chuyển"
+      },
+      "policies": {
+        "title": "Chính sách",
+        "privacy": "Chính sách bảo mật",
+        "terms": "Điều khoản dịch vụ",
+        "cookies": "Chính sách cookie"
+      },
+      "payments": {
+        "title": "Phương thức thanh toán"
+      }
+    },
+    "copyright": "© {year} Warehouse. Đã đăng ký bản quyền."
   }
 }
