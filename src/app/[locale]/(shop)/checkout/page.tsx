@@ -7,6 +7,7 @@ import { useAuthStore } from "@/app/stores/authStore";
 import toast from "react-hot-toast";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, CreditCard, Gift, Loader2, Truck } from "lucide-react";
+import { formatCurrencyVND } from "@/lib/utils";
 
 interface Address {
   fullName: string;
@@ -305,7 +306,7 @@ export default function CheckoutPage() {
                       <p className="text-sm text-gray-500">Qty: {item.quantity}</p>
                     </div>
                     <p className="font-medium text-gray-700">
-                      ${(item.price * item.quantity).toFixed(2)}
+                      {formatCurrencyVND(item.price * item.quantity)}
                     </p>
                   </div>
                 ))}
@@ -342,7 +343,7 @@ export default function CheckoutPage() {
               <div className="space-y-2 py-4 border-t border-b border-gray-200">
                 <div className="flex justify-between text-gray-600">
                   <span>Subtotal</span>
-                  <span>${totalPrice.toFixed(2)}</span>
+                  <span>{formatCurrencyVND(totalPrice)}</span>
                 </div>
                 <div className="flex justify-between text-gray-600">
                   <span>Shipping</span>
@@ -352,7 +353,7 @@ export default function CheckoutPage() {
               <div className="flex justify-between items-center mt-4 mb-6">
                 <span className="text-xl font-bold text-gray-900">Total</span>
                 <span className="text-2xl font-extrabold text-blue-600">
-                  ${totalPrice.toFixed(2)}
+                  {formatCurrencyVND(totalPrice)}
                 </span>
               </div>
               <Button

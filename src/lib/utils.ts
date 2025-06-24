@@ -1,7 +1,6 @@
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
 import slugify from 'slugify';
-import { ICategory } from "@/models/category";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -13,6 +12,13 @@ export function createSlug(text: string): string {
     strict: true,
     trim: true,
   });
+}
+
+export function formatCurrencyVND(amount: number): string {
+  return new Intl.NumberFormat('vi-VN', {
+    style: 'currency',
+    currency: 'VND',
+  }).format(amount);
 }
 
 

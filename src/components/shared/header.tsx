@@ -1,16 +1,16 @@
 'use client';
 
-import React, { memo } from 'react';
-import { User, Search, ChevronDown, ShoppingBag } from 'lucide-react';
+import React from 'react';
+import { User, Search, ChevronDown, Menu } from 'lucide-react'; // Added Menu icon
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
-import { 
-  DropdownMenu, 
-  DropdownMenuContent, 
-  DropdownMenuItem, 
-  DropdownMenuSeparator, 
-  DropdownMenuTrigger 
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu';
 import {
   NavigationMenu,
@@ -20,7 +20,12 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from '@/components/ui/navigation-menu';
-import { Badge } from '@/components/ui/badge';
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+} from '@/components/ui/sheet'; // Assuming you have a Sheet component
+import Image from 'next/image';
 import { LanguageSwitcher } from '../language-switcher';
 import { CartSheet } from '../CartSheet';
 import { useAuthStore } from '@/app/stores/authStore';
@@ -32,7 +37,7 @@ interface HeaderProps {
   categories: ICategory[];
 }
 
-const Header = ({ categories } : HeaderProps) => {
+const Header = ({ categories }: HeaderProps) => {
   const t = useTranslations('HomePage');
   const ta = useTranslations("auth");
   const { user, loading, isAuthenticated, logout } = useAuthStore();
@@ -49,40 +54,39 @@ const Header = ({ categories } : HeaderProps) => {
   });
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 backdrop-blur supports-[backdrop-filter]:bg-blue-600/95">
+    <header className="top-0 z-50 w-full border-b bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 backdrop-blur supports-[backdrop-filter]:bg-blue-600/95">
       {/* Main Header */}
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto p-8">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2 hover:opacity-80 transition-opacity">
-            <div className="flex items-center gap-2">
-              <div className="h-8 w-8 rounded-full bg-white/20 flex items-center justify-center">
-                <ShoppingBag className="h-5 w-5 text-white" />
-              </div>
-              <span className="text-xl font-bold text-white hidden sm:inline-block">WareHouse</span>
-            </div>
+          <Link href="/" className="flex items-center justify-center">
+            <Image
+              src="/logo.png"
+              alt="Logo"
+              width={128}
+              height={129}
+            />
           </Link>
-
-          {/* Search Bar */}
-          <div className="flex-1 max-w-2xl mx-4 sm:mx-8">
+        
+          {/* Search Bar (hidden on small screens, visible on md and up) */}
+          <div className="flex-1 hidden md:block py-8 sm:mx-8 max-w-4xl">
             <div className="relative">
-              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+              <Search className="absolute left-5 top-1/2 h-6 w-6 -translate-y-1/2 text-muted-foreground" />
               <Input
                 type="text"
                 placeholder={t('searchPlaceholder')}
-                className="w-full pl-10 bg-white/95 border-white/20 text-gray-900 placeholder:text-gray-500 focus:bg-white transition-colors"
+                className="w-full pl-16 pr-6 py-5 text-xl rounded-lg bg-white/95 border border-gray-300 text-gray-900 placeholder:text-gray-500 focus:bg-white focus:ring-2 focus:ring-blue-500 transition-colors"
                 aria-label={t('searchLabel')}
               />
             </div>
           </div>
-
           {/* Actions */}
           <div className="flex items-center space-x-4">
             {/* User Account */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button 
-                  variant="ghost" 
+                <Button
+                  variant="ghost"
                   className="flex items-center space-x-2 text-white hover:bg-white/10 border border-white/20"
                 >
                   <Avatar className="h-6 w-6">
@@ -118,7 +122,7 @@ const Header = ({ categories } : HeaderProps) => {
                       <Link href="/orders">Orders</Link>
                     </DropdownMenuItem>
                     <DropdownMenuSeparator />
-                    <DropdownMenuItem 
+                    <DropdownMenuItem
                       onClick={logout}
                       disabled={loading}
                       className="text-red-600 focus:text-red-600"
@@ -142,17 +146,86 @@ const Header = ({ categories } : HeaderProps) => {
             {/* Cart */}
             <CartSheet />
 
-            {/* Language Switcher */}
+            {/* Language Switcher (hidden on small screens, visible on sm and up) */}
             <div className="hidden sm:block">
               <LanguageSwitcher />
             </div>
+
+            {/* Mobile Menu Button (visible on small screens) */}
+            <div className="md:hidden">
+              <Sheet>
+                <SheetTrigger asChild>
+                  <Button variant="ghost" size="icon" className="text-white hover:bg-white/10">
+                    <Menu className="h-6 w-6" />
+                    <span className="sr-only">Toggle navigation menu</span>
+                  </Button>
+                </SheetTrigger>
+                <SheetContent side="left" className="w-64 p-4">
+                  <nav className="flex flex-col gap-4">
+                    {categories.length > 0 ? (
+                      categoriesWithChildren.map((category) => (
+                        <div key={category._id as string}>
+                          {category.children.length > 0 ? (
+                            <>
+                              <Link
+                                href={`/products?category=${category._id}`}
+                                className="block py-2 text-lg font-semibold hover:text-blue-600 transition-colors"
+                              >
+                                {category.name}
+                              </Link>
+                              <div className="ml-4 flex flex-col gap-2 mt-1">
+                                {category.children.map((child) => (
+                                  <Link
+                                    key={child._id as string}
+                                    href={`/products?category=${child._id}`}
+                                    className="block text-sm hover:text-blue-600 transition-colors"
+                                  >
+                                    {child.name}
+                                  </Link>
+                                ))}
+                              </div>
+                            </>
+                          ) : (
+                            <Link
+                              href={`/products?category=${category._id}`}
+                              className="block py-2 text-lg font-semibold hover:text-blue-600 transition-colors"
+                            >
+                              {category.name}
+                            </Link>
+                          )}
+                        </div>
+                      ))
+                    ) : (
+                      <div className="py-2 text-gray-500">
+                        <span>{"You have no categories"}</span>
+                      </div>
+                    )}
+                    <div className="mt-4 border-t pt-4">
+                      <LanguageSwitcher />
+                    </div>
+                  </nav>
+                </SheetContent>
+              </Sheet>
+            </div>
           </div>
         </div>
+
+        <div className="block md:hidden mt-8">
+            <div className="relative">
+              <Search className="absolute left-5 top-1/2 h-6 w-6 -translate-y-1/2 text-muted-foreground" />
+              <Input
+                type="text"
+                placeholder={t('searchPlaceholder')}
+                className="w-full pl-16 pr-6 py-5 text-xl rounded-lg bg-white/95 border border-gray-300 text-gray-900 placeholder:text-gray-500 focus:bg-white focus:ring-2 focus:ring-blue-500 transition-colors"
+                aria-label={t('searchLabel')}
+              />
+            </div>
+          </div>
       </div>
 
-      {/* Navigation Bar */}
-      <div className="border-t border-white/10 bg-blue-800/50">
-        <div className="container mx-auto flex justify-center px-4">
+      {/* Navigation Bar (hidden on small screens, visible on md and up) */}
+      <div className="hidden md:block border-t border-white/10 bg-blue-800/50">
+        <div className="container mx-auto flex justify-center p-4">
           <NavigationMenu>
             <NavigationMenuList>
               {categories.length > 0 ? (
@@ -161,7 +234,7 @@ const Header = ({ categories } : HeaderProps) => {
                     <NavigationMenuItem key={category._id as string} className="relative">
                       {category.children.length > 0 ? (
                         <>
-                          <NavigationMenuTrigger className="bg-transparent text-white hover:bg-white/10 data-[active]:bg-white/10 data-[state=open]:bg-white/10">
+                          <NavigationMenuTrigger className="bg-transparent font-bold text-xl text-white hover:bg-white/10 data-[active]:bg-white/10 data-[state=open]:bg-white/10">
                             {category.name}
                           </NavigationMenuTrigger>
                           <NavigationMenuContent>
@@ -202,7 +275,6 @@ const Header = ({ categories } : HeaderProps) => {
                       )}
                     </NavigationMenuItem>
                   ))}
-                  
                 </>
               ) : (
                 <div className="flex items-center py-2 px-4 text-white/60">
@@ -216,6 +288,5 @@ const Header = ({ categories } : HeaderProps) => {
     </header>
   );
 };
-
 
 export default Header;

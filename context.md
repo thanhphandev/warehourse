@@ -16,6 +16,7 @@ Nhóm Sản Phẩm & Tồn Kho (Product & Inventory):
 products: Quản lý thông tin chung về sản phẩm.
 product_variants: Quản lý các biến thể cụ thể của sản phẩm.
 warehouses: Quản lý các địa điểm kho hàng.
+inventory: Quan ly kho
 inventory_logs: Ghi nhận mọi thay đổi về tồn kho.
 
 

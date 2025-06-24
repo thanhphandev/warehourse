@@ -28,7 +28,7 @@
     },
     "placeholders": {
       "name": "Nguyễn Văn A",
-      "email": "email@ví dụ.com",
+      "email": "email@example.com",
       "password": "Mật khẩu",
       "confirmPassword": "Nhập lại mật khẩu"
     },

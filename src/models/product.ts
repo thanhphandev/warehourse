@@ -5,6 +5,7 @@ export interface IProduct extends Document {
   slug: string;
   description?: string;
   brand_id: Types.ObjectId;
+  manufacturer?: string;
   category_ids: Types.ObjectId[];
   tags: string[];
   status: 'draft' | 'published' | 'archived';

@@ -11,6 +11,7 @@ import {
 } from '@/components/ui/sheet';
 import { useCartStore } from '@/app/stores/cartStore';
 import { useRouter } from 'next/navigation';
+import { formatCurrencyVND } from '@/lib/utils';
 
 export function CartSheet() {
   const {
@@ -37,7 +38,7 @@ export function CartSheet() {
               {totalItems}
             </span>
           )}
-          <span className="ml-2">${totalPrice.toLocaleString()}</span>
+          <span className="ml-2">{formatCurrencyVND(totalPrice)}</span>
         </Button>
       </SheetTrigger>
 
@@ -77,7 +78,7 @@ export function CartSheet() {
 
                   <div className="flex items-center justify-between mt-2">
                     <span className="font-bold text-red-600">
-                      ${item.price.toLocaleString()}
+                      {formatCurrencyVND(item.price)}
                     </span>
 
                     <div className="flex items-center gap-1">
@@ -119,7 +120,7 @@ export function CartSheet() {
               <div className="flex justify-between items-center mb-4">
                 <span className="text-lg font-bold">Total:</span>
                 <span className="text-xl font-bold text-red-600">
-                  ${totalPrice.toLocaleString()}
+                  {formatCurrencyVND(totalPrice)}
                 </span>
               </div>
 

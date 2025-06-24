@@ -101,7 +101,7 @@ export function ProductGrid({ categoryId, brandId, searchQuery }: ProductGridPro
       </div>
 
       {/* Products grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {products.map((product) => (
           <ProductWithVariant key={product._id as string} product={product} />
         ))}
