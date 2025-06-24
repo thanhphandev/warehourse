@@ -48,7 +48,7 @@ export const LanguageSwitcher = () => {
         <Button 
           variant="ghost" 
           size="icon" 
-          className="text-white border-1 border-white hover:bg-white/10"
+          className="text-black border-1 border-white hover:bg-white/10 bg-white"
           disabled={isPending}
           aria-label="Change language"
         >

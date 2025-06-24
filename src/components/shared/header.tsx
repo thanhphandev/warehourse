@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { User, Search, ChevronDown, Menu } from 'lucide-react'; // Added Menu icon
+import { User, Search, ChevronDown, Menu, Languages } from 'lucide-react'; // Added Menu icon
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
@@ -83,7 +83,7 @@ const Header = ({ categories }: HeaderProps) => {
             </div>
           </div>
           {/* Actions */}
-          <div className="flex items-center space-x-4">
+          <div className="flex justify-between gap-4 items-center">
 
             {/* Cart */}
             <CartSheet />
@@ -147,7 +147,9 @@ const Header = ({ categories }: HeaderProps) => {
                 )}
               </DropdownMenuContent>
             </DropdownMenu>
+            <div className='hidden md:block'>
             <LanguageSwitcher />
+            </div>
 
             {/* Mobile Menu Button (visible on small screens) */}
             <div className="md:hidden">
@@ -205,8 +207,11 @@ const Header = ({ categories }: HeaderProps) => {
                       </Link>
                     </div>
 
-                    <div className="mt-4 border-t pt-4">
+                    <div className="mt-4 border-t pt-4 flex items-center gap-2">
+                      <div className='border border-black rounded-lg p-1'>
                       <LanguageSwitcher />
+                      </div>
+                      <span>Support Languages</span>
                     </div>
                   </nav>
                 </SheetContent>
