@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { faker } from '@faker-js/faker';
 import { connectDb } from '@/lib/mongodb';
 
-import Product from '@/models/product';
+import Product from '@/models/product2';
 import ProductVariant from '@/models/product_variant';
 import Category from '@/models/category';
 import Brand from '@/models/brand';

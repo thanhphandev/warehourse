@@ -4,7 +4,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { verifyJwt } from '@/lib/auth';
 
 const intlMiddleware = createMiddleware(routing);
-const PROTECTED_PATHS = ['/dashboard', '/profile', '/orders', '/admin'];
+const PROTECTED_PATHS = ['/profile', '/orders'];
+const ADMIN_PATHS = ['/dashboard'];
 const PUBLIC_AUTH_ONLY_PATHS = ['/auth/login', '/auth/signup'];
 
 function stripLocale(pathname: string, locales: readonly string[]) {
@@ -25,13 +26,19 @@ export async function middleware(req: NextRequest) {
 
   const isProtected = PROTECTED_PATHS.some(path => cleanPath.startsWith(path));
   const isAuthOnlyPage = PUBLIC_AUTH_ONLY_PATHS.includes(cleanPath);
+  const isAdminPage = ADMIN_PATHS.some(path => cleanPath.startsWith(path));
 
   const token = req.cookies.get('auth_token')?.value;
   const payload = token && await verifyJwt(token);
 
   if (isAuthOnlyPage && payload) {
-    const dashboardUrl = new URL(`/${locale}/dashboard`, req.url);
+    const dashboardUrl = new URL(`/${locale}`, req.url);
     return NextResponse.redirect(dashboardUrl);
+  }
+
+  if (isAdminPage && (!payload || payload.role !== "admin")) {
+    const forbiddenUrl = new URL(`/${locale}`, req.url);
+    return NextResponse.redirect(forbiddenUrl);
   }
 
   if (isProtected && !payload) {

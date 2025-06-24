@@ -1,7 +1,7 @@
 import { axiosInstance } from '@/lib/axiosInstance';
 import { IBrand } from '@/models/brand';
 import { ICategory } from '@/models/category';
-import { IProduct } from '@/models/product';
+import { IProduct } from '@/models/product2';
 import { IProductVariant } from '@/models/product_variant';
 import { useQuery } from '@tanstack/react-query';
 

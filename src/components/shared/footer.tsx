@@ -27,10 +27,10 @@ const Footer = () => {
               <Input 
                 type="email" 
                 placeholder={t('newsletter.placeholder')}
-                className="bg-gray-800 border-gray-600 text-white placeholder:text-gray-500 flex-grow"
+                className="bg-gray-800 p-6 border-gray-600 text-white placeholder:text-gray-500 flex-grow"
                 aria-label={t('newsletter.placeholder')}
               />
-              <Button type="submit" className="bg-blue-600 hover:bg-blue-700 text-white">
+              <Button type="submit" className="bg-blue-600 hover:bg-blue-700 text-white p-6">
                 <Send className="h-4 w-4 sm:mr-2" />
                 <span className="hidden sm:inline">{t('newsletter.button')}</span>
               </Button>

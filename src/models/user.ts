@@ -52,7 +52,7 @@ const UserSchema = new Schema<IUser>({
     is_verified: { type: Boolean, default: false },
   },
   password: { type: String, required: true },
-  role: { type: String, enum: ['customer', 'admin', 'manager'], default: 'customer' },
+  role: { type: String, enum: ['customer', 'admin'], default: 'customer' },
   addresses: [UserAddressSchema],
   provider: {
     type: String,

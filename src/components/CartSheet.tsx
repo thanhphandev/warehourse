@@ -1,6 +1,6 @@
 'use client';
 
-import { ShoppingCart, Plus, Minus, Trash2 } from 'lucide-react';
+import { ShoppingCart, Plus, Minus, Trash2, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
   Sheet,
@@ -12,8 +12,11 @@ import {
 import { useCartStore } from '@/app/stores/cartStore';
 import { useRouter } from 'next/navigation';
 import { formatCurrencyVND } from '@/lib/utils';
+import { useState, useTransition } from 'react';
+import { useTranslations } from 'next-intl';
 
 export function CartSheet() {
+  const t = useTranslations('cart');
   const {
     items,
     totalItems,
@@ -23,15 +26,20 @@ export function CartSheet() {
     clearCart,
   } = useCartStore();
   const router = useRouter();
+  const [isPending, startTransition] = useTransition();
+  const [open, setOpen] = useState(false);
 
-  function handleCheckout() {
-    router.push('/checkout');
-  }
+  const handleCheckout = () => {
+    startTransition(() => {
+      router.push('/checkout');
+      setOpen(false);
+    });
+  };
 
   return (
-    <Sheet>
+    <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
-        <Button variant="secondary" className="relative">
+        <Button variant="secondary" className="relative p-4">
           <ShoppingCart className="h-4 w-4" />
           {totalItems > 0 && (
             <span className="absolute -top-2 -right-2 text-white bg-red-500 text-xs rounded-full h-5 w-5 flex items-center justify-center">
@@ -44,13 +52,13 @@ export function CartSheet() {
 
       <SheetContent side="right" className="w-full sm:max-w-md overflow-y-auto p-4">
         <SheetHeader>
-          <SheetTitle>Shopping Cart ({totalItems} items)</SheetTitle>
+          <SheetTitle>{t('title')} ({totalItems} {t('items')})</SheetTitle>
         </SheetHeader>
 
         {items.length === 0 ? (
           <div className="text-center py-8">
             <ShoppingCart className="h-12 w-12 mx-auto text-gray-400 mb-4" />
-            <p className="text-gray-600">Your cart is empty</p>
+            <p className="text-gray-600">{t('empty')}</p>
           </div>
         ) : (
           <div className="space-y-4 py-4">
@@ -61,10 +69,8 @@ export function CartSheet() {
                   alt={item.name}
                   className="w-16 h-16 object-cover rounded"
                 />
-
                 <div className="flex-1 min-w-0">
                   <h4 className="font-medium text-sm line-clamp-2">{item.name}</h4>
-
                   <div className="flex flex-wrap gap-1 mt-1">
                     {item.attributes.map((attr) => (
                       <span
@@ -118,19 +124,26 @@ export function CartSheet() {
 
             <div className="border-t pt-4">
               <div className="flex justify-between items-center mb-4">
-                <span className="text-lg font-bold">Total:</span>
+                <span className="text-lg font-bold">{t('total')}:</span>
                 <span className="text-xl font-bold text-red-600">
                   {formatCurrencyVND(totalPrice)}
                 </span>
               </div>
 
               <div className="space-y-2">
-                <Button onClick={handleCheckout} className="w-full" size="lg">
-                  Proceed to Checkout
+                <Button onClick={handleCheckout} className="w-full" size="lg" disabled={isPending}>
+                  {isPending ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      {t('loading')}
+                    </>
+                  ) : (
+                    t('checkout')
+                  )}
                 </Button>
 
                 <Button variant="outline" className="w-full" onClick={clearCart}>
-                  Clear Cart
+                  {t('cleared')}
                 </Button>
               </div>
             </div>

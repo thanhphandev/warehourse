@@ -6,6 +6,7 @@ import { ProductGridSkeleton } from './ui/skeleton';
 import { Loader2, Search } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
+import { IProduct } from '@/models/product2';
 
 interface ProductGridProps {
   categoryId?: string;
@@ -133,8 +134,8 @@ export function ProductGrid({ categoryId, brandId, searchQuery }: ProductGridPro
 }
 
 // Component to fetch and display product with its default variant
-function ProductWithVariant({ product }: { product: any }) {
-  const { data: variantsResponse } = useProductVariants(product._id);
+function ProductWithVariant({ product }: { product: IProduct }) {
+  const { data: variantsResponse } = useProductVariants(product._id as string);
   
   const variants = variantsResponse?.data || [];
   const defaultVariant = variants.find(v => v.is_default) || variants[0];

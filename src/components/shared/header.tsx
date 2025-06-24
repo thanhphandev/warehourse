@@ -12,6 +12,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu';
+import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -23,10 +24,11 @@ import {
 import {
   Sheet,
   SheetContent,
+  SheetTitle,
   SheetTrigger,
 } from '@/components/ui/sheet'; // Assuming you have a Sheet component
 import Image from 'next/image';
-import { LanguageSwitcher } from '../language-switcher';
+import { LanguageSwitcher } from './language-switcher';
 import { CartSheet } from '../CartSheet';
 import { useAuthStore } from '@/app/stores/authStore';
 import Link from 'next/link';
@@ -82,6 +84,9 @@ const Header = ({ categories }: HeaderProps) => {
           </div>
           {/* Actions */}
           <div className="flex items-center space-x-4">
+
+            {/* Cart */}
+            <CartSheet />
             {/* User Account */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -142,14 +147,7 @@ const Header = ({ categories }: HeaderProps) => {
                 )}
               </DropdownMenuContent>
             </DropdownMenu>
-
-            {/* Cart */}
-            <CartSheet />
-
-            {/* Language Switcher (hidden on small screens, visible on sm and up) */}
-            <div className="hidden sm:block">
-              <LanguageSwitcher />
-            </div>
+            <LanguageSwitcher />
 
             {/* Mobile Menu Button (visible on small screens) */}
             <div className="md:hidden">
@@ -161,45 +159,52 @@ const Header = ({ categories }: HeaderProps) => {
                   </Button>
                 </SheetTrigger>
                 <SheetContent side="left" className="w-64 p-4">
+                  {/* Accessible hidden title for screen readers */}
+                  <VisuallyHidden>
+                    <SheetTitle>Navigation Menu</SheetTitle>
+                  </VisuallyHidden>
                   <nav className="flex flex-col gap-4">
+                    
                     {categories.length > 0 ? (
-                      categoriesWithChildren.map((category) => (
-                        <div key={category._id as string}>
-                          {category.children.length > 0 ? (
-                            <>
-                              <Link
-                                href={`/products?category=${category._id}`}
-                                className="block py-2 text-lg font-semibold hover:text-blue-600 transition-colors"
-                              >
-                                {category.name}
-                              </Link>
-                              <div className="ml-4 flex flex-col gap-2 mt-1">
-                                {category.children.map((child) => (
-                                  <Link
-                                    key={child._id as string}
-                                    href={`/products?category=${child._id}`}
-                                    className="block text-sm hover:text-blue-600 transition-colors"
-                                  >
-                                    {child.name}
-                                  </Link>
-                                ))}
-                              </div>
-                            </>
-                          ) : (
-                            <Link
-                              href={`/products?category=${category._id}`}
-                              className="block py-2 text-lg font-semibold hover:text-blue-600 transition-colors"
-                            >
-                              {category.name}
-                            </Link>
-                          )}
-                        </div>
-                      ))
+                      categories
+                        .filter((cat: ICategory) => cat.ancestors.length === 0)
+                        .map((category: ICategory) => (
+                          <Link
+                            key={category._id as string}
+                            href={`/products?category=${category._id}`}
+                            className="block py-2 text-lg font-semibold hover:text-blue-600 transition-colors"
+                          >
+                            {category.name}
+                          </Link>
+                        ))
                     ) : (
                       <div className="py-2 text-gray-500">
-                        <span>{"You have no categories"}</span>
+                        <span>You have no categories</span>
                       </div>
                     )}
+
+                    {/* Extra Navigation Items */}
+                    <div className="mt-4 border-t pt-4 flex flex-col gap-2">
+                      <Link
+                        href="/brands"
+                        className="text-lg hover:text-blue-600 transition-colors"
+                      >
+                        Brands
+                      </Link>
+                      <Link
+                        href="/manufacturers"
+                        className="text-lg hover:text-blue-600 transition-colors"
+                      >
+                        Manufacturers
+                      </Link>
+                      <Link
+                        href="/blog"
+                        className="text-lg hover:text-blue-600 transition-colors"
+                      >
+                        Blog
+                      </Link>
+                    </div>
+
                     <div className="mt-4 border-t pt-4">
                       <LanguageSwitcher />
                     </div>

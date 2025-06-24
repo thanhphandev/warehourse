@@ -91,5 +91,49 @@
       }
     },
     "copyright": "© {year} Warehouse. All rights reserved."
+  },
+  "cart": {
+    "title": "Shopping Cart",
+    "empty": "Your cart is empty",
+    "total": "Total",
+    "checkout": "Proceed to Checkout",
+    "cleared": "Clear Cart",
+    "items": "items",
+    "loading": "Loading..."
+  },
+  "checkout": {
+    "title": "Complete Your Order",
+    "subtitle": "Just a few more steps to get your items.",
+    "contact": "Contact Information",
+    "shipping": "Shipping Address",
+    "payment": "Payment Method",
+    "cod": "Cash on Delivery (COD)",
+    "codNote": "Pay with cash upon receiving your order.",
+    "card": "Credit / Debit Card",
+    "cardNote": "Pay with Visa, MasterCard, etc. (Via Stripe/PayPal)",
+    "orderSummary": "Order Summary",
+    "discount": "Discount Code",
+    "apply": "Apply",
+    "subtotal": "Subtotal",
+    "shippingCost": "Shipping",
+    "shippingFree": "FREE",
+    "total": "Total",
+    "placeOrder": "Place Order",
+    "processing": "Processing...",
+    "returnToCart": "Return to Cart",
+    "emptyCart": "Your cart is empty.",
+    "pleaseLogin": "Please log in to proceed.",
+    "fillAllFields": "Please fill in all shipping address fields.",
+    "success": "Order placed successfully!",
+    "error": "Something went wrong. Please try again.",
+    "fullName": "Full Name",
+    "phoneNumber": "Phone Number",
+    "street": "Street Address",
+    "city": "City / Province",
+    "district": "District",
+    "ward": "Ward",
+    "enterCode": "Enter code",
+    "itemQuantity": "Qty"
   }
+
 }

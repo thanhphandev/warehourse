@@ -48,7 +48,7 @@ export const LanguageSwitcher = () => {
         <Button 
           variant="ghost" 
           size="icon" 
-          className="text-white hover:bg-white/10"
+          className="text-white border-1 border-white hover:bg-white/10"
           disabled={isPending}
           aria-label="Change language"
         >
@@ -56,7 +56,7 @@ export const LanguageSwitcher = () => {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-40">
-        <DropdownMenuLabel>Chọn ngôn ngữ</DropdownMenuLabel>
+        <DropdownMenuLabel>Select language</DropdownMenuLabel>
         <DropdownMenuSeparator />
         {supportedLanguages.map((lang) => (
           <DropdownMenuItem 

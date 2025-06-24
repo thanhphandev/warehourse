@@ -91,5 +91,15 @@
       }
     },
     "copyright": "© {year} Warehouse。保留所有权利。"
-  }
+  },
+  "cart": {
+  "title": "购物车",
+  "empty": "您的购物车是空的",
+  "total": "总计",
+  "checkout": "前往结账",
+  "cleared": "清空购物车",
+  "items": "件商品",
+  "loading": "加载中..."
+}
+
 }

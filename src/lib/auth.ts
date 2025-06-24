@@ -2,6 +2,7 @@ import bcrypt from 'bcryptjs';
 import { SignJWT, jwtVerify } from 'jose';
 import { cookies } from 'next/headers';
 import { env } from '@/env';
+import { IUser } from '@/models/user';
 
 const JWT_SECRET = new TextEncoder().encode(env.JWT_SECRET || 'changeme');
 const JWT_EXPIRES_IN = '7d';
@@ -26,7 +27,7 @@ export async function signJwt(payload: { userId: string; role: string }) {
 export async function verifyJwt(token: string) {
   try {
     const { payload } = await jwtVerify(token, JWT_SECRET);
-    return payload as { userId: string; role: string; iat: number; exp: number };
+    return payload as { userId: string; role: IUser["role"]; iat: number; exp: number };
   } catch {
     return null;
   }
