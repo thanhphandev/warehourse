@@ -3,7 +3,10 @@
     "searchPlaceholder": "Search for a product",
     "searchLabel": "Search",
     "accountLabel": "My Account",
-    "linkAuth": "Signin or Register"
+    "linkAuth": "Signin or Register",
+    "categories": "Categories",
+    "brands": "Brands",
+    "manufacturers": "Manufacturers"
   },
   "auth": {
     "login": {

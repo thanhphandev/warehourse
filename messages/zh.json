@@ -3,7 +3,10 @@
     "searchPlaceholder": "搜索产品",
     "searchLabel": "搜索",
     "accountLabel": "我的账户",
-    "linkAuth": "登录或注册"
+    "linkAuth": "登录或注册",
+    "categories": "分类",
+    "brands": "品牌",
+    "manufacturers": "制造商"
   },
   "auth": {
     "login": {

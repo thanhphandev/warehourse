@@ -1,8 +1,8 @@
 import { axiosInstance } from '@/lib/axiosInstance';
 import { IBrand } from '@/models/brand';
 import { ICategory } from '@/models/category';
-import { IProduct } from '@/models/product2';
-import { IProductVariant } from '@/models/product_variant';
+import { IManufacturer } from '@/models/manufacturer';
+import { IProduct } from '@/models/product';
 import { useQuery } from '@tanstack/react-query';
 
 
@@ -37,25 +37,47 @@ const fetchProduct = async (id: string): Promise<ApiResponse<IProduct>> => {
   return response.data;
 };
 
-const fetchProductVariants = async (productId: string): Promise<ApiResponse<IProductVariant[]>> => {
-  const response = await axiosInstance.get(`/api/products/${productId}/variants`);
-  return response.data;
-};
+// utils/fetchers.ts
 
 export const fetchCategories = async (): Promise<ApiResponse<ICategory[]>> => {
-  const response = await axiosInstance.get('/api/category');
-  return response.data;
+  const res = await fetch(`http://localhost:3000/api/category`, {
+    // 🕒 ISR: Cache + revalidate mỗi 60s
+    next: { revalidate: 60 },
+  });
+
+  if (!res.ok) throw new Error('Failed to fetch categories');
+  return res.json();
 };
 
-const fetchBrands = async (): Promise<ApiResponse<IBrand[]>> => {
-  const response = await axiosInstance.get('/api/brand');
-  return response.data;
+export const fetchManufacturers = async (): Promise<ApiResponse<IManufacturer[]>> => {
+  const res = await fetch(`http://localhost:3000/api/manufacturer`, {
+    next: { revalidate: 60 },
+  });
+  if (!res.ok) {
+    throw new Error('Failed to fetch manufacturers');
+  }
+  return res.json();
+}
+
+export const fetchBrands = async (): Promise<ApiResponse<IBrand[]>> => {
+  const res = await fetch(`http://localhost:3000/api/brand`, {
+    next: { revalidate: 60 },
+  });
+
+  if (!res.ok) throw new Error('Failed to fetch brands');
+  return res.json();
 };
 
-const fetchProductBySlug = async (slug: string): Promise<ApiResponse<IProduct>> => {
-  const response = await axiosInstance.get(`/api/products/slug/${slug}`);
-  return response.data;
+export const fetchProductBySlug = async (slug: string): Promise<ApiResponse<IProduct>> => {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/products/slug/${slug}`, {
+    // 🕒 ISR: Cache + revalidate mỗi 60s
+    next: { revalidate: 60 },
+  });
+
+  if (!res.ok) throw new Error('Failed to fetch product');
+  return res.json();
 };
+
 
 // --- React Query hooks ---
 export const useProducts = (params?: {
@@ -81,13 +103,6 @@ export const useProduct = (id: string) => {
   });
 };
 
-export const useProductVariants = (productId: string) => {
-  return useQuery({
-    queryKey: ['product-variants', productId],
-    queryFn: () => fetchProductVariants(productId),
-    enabled: !!productId,
-  });
-};
 
 export const useCategories = () => {
   return useQuery({

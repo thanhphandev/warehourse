@@ -68,6 +68,7 @@ export interface ICookingInstructions {
 export interface IProduct extends Document {
   sku: string;
   brand_id: mongoose.Types.ObjectId;
+  slug: string;
   manufacturer_id?: mongoose.Types.ObjectId | null;
   product_name: IProductName;
   description?: IDescription;
@@ -87,6 +88,7 @@ export interface IProduct extends Document {
 const ProductSchema = new Schema<IProduct>(
   {
     sku: { type: String, required: true, unique: true },
+    slug: { type: String, required: true, unique: true },
 
     brand_id: { type: Schema.Types.ObjectId, ref: 'Brand', required: true },
     manufacturer_id: { type: Schema.Types.ObjectId, ref: 'Manufacturer', default: null },

@@ -1,12 +1,12 @@
 'use client';
 
-import { useProducts, useProductVariants } from '@/hooks/useApi';
+import { useProducts} from '@/hooks/useApi';
 import { ProductCard } from './ProductCard';
 import { ProductGridSkeleton } from './ui/skeleton';
 import { Loader2, Search } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { IProduct } from '@/models/product2';
+import { IProduct } from '@/models/product';
 
 interface ProductGridProps {
   categoryId?: string;

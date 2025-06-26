@@ -14,19 +14,17 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-} from '@/components/ui/navigation-menu';
-import {
   Sheet,
   SheetContent,
   SheetTitle,
   SheetTrigger,
-} from '@/components/ui/sheet'; // Assuming you have a Sheet component
+} from '@/components/ui/sheet';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion';
 import Image from 'next/image';
 import { LanguageSwitcher } from './language-switcher';
 import { CartSheet } from '../CartSheet';
@@ -34,16 +32,18 @@ import { useAuthStore } from '@/app/stores/authStore';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { ICategory } from '@/models/category';
+import { IBrand } from '@/models/brand';
+import { IManufacturer } from '@/models/manufacturer';
+import UserAvatar from './user-avatar';
 
 interface HeaderProps {
   categories: ICategory[];
+  brands: IBrand[];
+  manufacturers: IManufacturer[];
 }
 
-const Header = ({ categories }: HeaderProps) => {
+const Header = ({ categories, brands, manufacturers }: HeaderProps) => {
   const t = useTranslations('HomePage');
-  const ta = useTranslations("auth");
-  const { user, loading, isAuthenticated, logout } = useAuthStore();
-
   // Process categories
   const parentCategories = categories.filter((cat: ICategory) => cat.ancestors.length == 0) || [];
   const childCategories = categories.filter((cat: ICategory) => cat.ancestors.length > 0) || [];
@@ -61,15 +61,15 @@ const Header = ({ categories }: HeaderProps) => {
       <div className="container mx-auto p-8">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center justify-center">
+          <Link href="/" className="flex items-center justify-center bg-white rounded-lg">
             <Image
               src="/logo.png"
               alt="Logo"
-              width={128}
-              height={129}
+              width={80}
+              height={80}
             />
           </Link>
-        
+
           {/* Search Bar (hidden on small screens, visible on md and up) */}
           <div className="flex-1 hidden md:block py-8 sm:mx-8 max-w-4xl">
             <div className="relative">
@@ -88,67 +88,10 @@ const Header = ({ categories }: HeaderProps) => {
             {/* Cart */}
             <CartSheet />
             {/* User Account */}
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  variant="ghost"
-                  className="flex items-center space-x-2 text-white hover:bg-white/10 border border-white/20"
-                >
-                  <Avatar className="h-6 w-6">
-                    <AvatarFallback className="bg-white/20 text-white text-xs">
-                      {isAuthenticated && user ? user.full_name.charAt(0).toUpperCase() : <User className="h-4 w-4" />}
-                    </AvatarFallback>
-                  </Avatar>
-                  <div className="hidden sm:block text-left">
-                    <div className="text-sm font-medium">
-                      {isAuthenticated && user ? user.full_name : t('accountLabel')}
-                    </div>
-                    {isAuthenticated && user && (
-                      <div className="text-xs text-white/80 truncate max-w-32">
-                        {user.email.address}
-                      </div>
-                    )}
-                  </div>
-                  <ChevronDown className="h-4 w-4" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-56">
-                {isAuthenticated && user ? (
-                  <>
-                    <div className="px-2 py-1.5">
-                      <p className="text-sm font-medium">{user.full_name}</p>
-                      <p className="text-xs text-muted-foreground">{user.email.address}</p>
-                    </div>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuItem asChild>
-                      <Link href="/profile">Profile</Link>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem asChild>
-                      <Link href="/orders">Orders</Link>
-                    </DropdownMenuItem>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuItem
-                      onClick={logout}
-                      disabled={loading}
-                      className="text-red-600 focus:text-red-600"
-                    >
-                      {loading ? ta('logout.loggingOut') : ta("logout.title")}
-                    </DropdownMenuItem>
-                  </>
-                ) : (
-                  <>
-                    <DropdownMenuItem asChild>
-                      <Link href="/auth/login">{ta("buttons.login")}</Link>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem asChild>
-                      <Link href="/auth/signup">{ta("buttons.signup")}</Link>
-                    </DropdownMenuItem>
-                  </>
-                )}
-              </DropdownMenuContent>
-            </DropdownMenu>
+            <UserAvatar />
+
             <div className='hidden md:block'>
-            <LanguageSwitcher />
+              <LanguageSwitcher />
             </div>
 
             {/* Mobile Menu Button (visible on small screens) */}
@@ -165,55 +108,79 @@ const Header = ({ categories }: HeaderProps) => {
                   <VisuallyHidden>
                     <SheetTitle>Navigation Menu</SheetTitle>
                   </VisuallyHidden>
-                  <nav className="flex flex-col gap-4">
-                    
-                    {categories.length > 0 ? (
-                      categories
-                        .filter((cat: ICategory) => cat.ancestors.length === 0)
-                        .map((category: ICategory) => (
-                          <Link
-                            key={category._id as string}
-                            href={`/products?category=${category._id}`}
-                            className="block py-2 text-lg font-semibold hover:text-blue-600 transition-colors"
-                          >
-                            {category.name}
-                          </Link>
-                        ))
-                    ) : (
-                      <div className="py-2 text-gray-500">
-                        <span>You have no categories</span>
-                      </div>
-                    )}
+                  {/* Navigation Links */}
+                  <div className="h-full overflow-y-scroll no-scrollbar mt-10">
+                    <Accordion type="multiple" className="w-full">
 
-                    {/* Extra Navigation Items */}
-                    <div className="mt-4 border-t pt-4 flex flex-col gap-2">
-                      <Link
-                        href="/brands"
-                        className="text-lg hover:text-blue-600 transition-colors"
-                      >
-                        Brands
-                      </Link>
-                      <Link
-                        href="/manufacturers"
-                        className="text-lg hover:text-blue-600 transition-colors"
-                      >
-                        Manufacturers
-                      </Link>
-                      <Link
-                        href="/blog"
-                        className="text-lg hover:text-blue-600 transition-colors"
-                      >
-                        Blog
-                      </Link>
-                    </div>
+                      {/* Categories */}
+                      <AccordionItem value="categories">
+                        <AccordionTrigger className="text-lg">{t("categories")}</AccordionTrigger>
+                        <AccordionContent className="pl-4">
+                          {categoriesWithChildren.length > 0 ? (
+                            categoriesWithChildren.map((cat) => (
+                              <Link
+                                key={cat._id as string}
+                                href={`/products?category=${cat._id}`}
+                                className="block py-1 text-sm text-gray-700 hover:text-blue-600"
+                              >
+                                {cat.name}
+                              </Link>
+                            ))
+                          ) : (
+                            <div className="text-sm text-gray-500">No categories available</div>
+                          )}
+                        </AccordionContent>
+                      </AccordionItem>
 
-                    <div className="mt-4 border-t pt-4 flex items-center gap-2">
-                      <div className='border border-black rounded-lg p-1'>
-                      <LanguageSwitcher />
+                      {/* Brands */}
+                      <AccordionItem value="brands">
+                        <AccordionTrigger className="text-lg">{t("brands")}</AccordionTrigger>
+                        <AccordionContent className="pl-4">
+                          {brands.map((brand) => (
+                            <Link
+                              key={brand._id as string}
+                              href={`/brands/${brand.slug}`}
+                              className="block py-1 text-sm text-gray-700 hover:text-blue-600"
+                            >
+                              {brand.name}
+                            </Link>
+                          ))}
+                        </AccordionContent>
+                      </AccordionItem>
+
+                      {/* Manufacturers */}
+                      <AccordionItem value="manufacturers">
+                        <AccordionTrigger className="text-lg">{t("manufacturers")}</AccordionTrigger>
+                        <AccordionContent className="pl-4">
+                          {manufacturers.map((mfr) => (
+                            <Link
+                              key={mfr.slug}
+                              href={`/manufacturers/${mfr.slug}`}
+                              className="block py-1 text-sm text-gray-700 hover:text-blue-600"
+                            >
+                              {mfr.name}
+                            </Link>
+                          ))}
+                        </AccordionContent>
+                      </AccordionItem>
+                    </Accordion>
+
+                    {/* Blog (không cần Accordion) */}
+                    <Link
+                      href="/blog"
+                      className="mt-6 block text-lg font-semibold hover:text-blue-600 transition-colors"
+                    >
+                      Blog
+                    </Link>
+
+                    {/* Language Switcher */}
+                    <div className="mt-6 border-t pt-4 flex items-center gap-2">
+                      <div className="border border-black rounded-lg p-1">
+                        <LanguageSwitcher />
                       </div>
-                      <span>Support Languages</span>
+                      <span className="text-sm">Support Languages</span>
                     </div>
-                  </nav>
+                  </div>
                 </SheetContent>
               </Sheet>
             </div>
@@ -221,78 +188,105 @@ const Header = ({ categories }: HeaderProps) => {
         </div>
 
         <div className="block md:hidden mt-8">
-            <div className="relative">
-              <Search className="absolute left-5 top-1/2 h-6 w-6 -translate-y-1/2 text-muted-foreground" />
-              <Input
-                type="text"
-                placeholder={t('searchPlaceholder')}
-                className="w-full pl-16 pr-6 py-5 text-xl rounded-lg bg-white/95 border border-gray-300 text-gray-900 placeholder:text-gray-500 focus:bg-white focus:ring-2 focus:ring-blue-500 transition-colors"
-                aria-label={t('searchLabel')}
-              />
-            </div>
+          <div className="relative">
+            <Search className="absolute left-5 top-1/2 h-6 w-6 -translate-y-1/2 text-muted-foreground" />
+            <Input
+              type="text"
+              placeholder={t('searchPlaceholder')}
+              className="w-full pl-16 pr-6 py-5 text-xl rounded-lg bg-white/95 border border-gray-300 text-gray-900 placeholder:text-gray-500 focus:bg-white focus:ring-2 focus:ring-blue-500 transition-colors"
+              aria-label={t('searchLabel')}
+            />
           </div>
+        </div>
       </div>
 
-      {/* Navigation Bar (hidden on small screens, visible on md and up) */}
-      <div className="hidden md:block border-t border-white/10 bg-blue-800/50">
-        <div className="container mx-auto flex justify-center p-4">
-          <NavigationMenu>
-            <NavigationMenuList>
-              {categories.length > 0 ? (
-                <>
-                  {categoriesWithChildren.map((category) => (
-                    <NavigationMenuItem key={category._id as string} className="relative">
-                      {category.children.length > 0 ? (
-                        <>
-                          <NavigationMenuTrigger className="bg-transparent font-bold text-xl text-white hover:bg-white/10 data-[active]:bg-white/10 data-[state=open]:bg-white/10">
-                            {category.name}
-                          </NavigationMenuTrigger>
-                          <NavigationMenuContent>
-                            <div className="w-64 p-2">
-                              <div className="grid gap-1">
-                                <NavigationMenuLink asChild>
-                                  <Link
-                                    href={`/products?category=${category._id}`}
-                                    className="block px-3 py-2 text-sm font-medium hover:bg-accent rounded-md"
-                                  >
-                                    View All {category.name}
-                                  </Link>
-                                </NavigationMenuLink>
-                                <div className="h-px bg-border my-1" />
-                                {category.children.map((child) => (
-                                  <NavigationMenuLink key={child._id as string} asChild>
-                                    <Link
-                                      href={`/products?category=${child._id}`}
-                                      className="block px-3 py-2 text-sm hover:bg-accent rounded-md"
-                                    >
-                                      {child.name}
-                                    </Link>
-                                  </NavigationMenuLink>
-                                ))}
-                              </div>
-                            </div>
-                          </NavigationMenuContent>
-                        </>
-                      ) : (
-                        <NavigationMenuLink asChild>
-                          <Link
-                            href={`/products?category=${category._id}`}
-                            className="group inline-flex h-9 w-max items-center justify-center rounded-md bg-transparent px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-white/10 focus:bg-white/10 focus:outline-none disabled:pointer-events-none disabled:opacity-50"
-                          >
-                            {category.name}
-                          </Link>
-                        </NavigationMenuLink>
-                      )}
-                    </NavigationMenuItem>
+      <div className="hidden md:block border-t border-white/10 bg-white shadow-sm">
+        <div className="container mx-auto px-4 py-4">
+          <div className="flex gap-8 items-center justify-start">
+
+            {/* Categories */}
+            <div className="relative group">
+              <button className="text-base font-semibold text-gray-800 hover:text-blue-600 px-4 py-2 flex items-center gap-1">
+                {t("categories")}
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              <div className="absolute left-0 top-full mt-1 w-64 bg-white border border-gray-200 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                <ul className="py-2">
+                  {categoriesWithChildren.map((cat) => (
+                    <li key={cat._id as string}>
+                      <Link
+                        href={`/products?category=${cat._id}`}
+                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                      >
+                        {cat.name}
+                      </Link>
+                    </li>
                   ))}
-                </>
-              ) : (
-                <div className="flex items-center py-2 px-4 text-white/60">
-                  <span>{"You're have no category"}</span>
-                </div>
-              )}
-            </NavigationMenuList>
-          </NavigationMenu>
+                </ul>
+              </div>
+            </div>
+
+            {/* Brands */}
+            <div className="relative group">
+              <button className="text-base font-semibold text-gray-800 hover:text-blue-600 px-4 py-2 flex items-center gap-1">
+                {t("brands")}
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              <div className="absolute left-0 top-full mt-1 w-64 bg-white border border-gray-200 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                <ul className="py-2">
+                  {brands.map((brand) => (
+                    <li key={brand._id as string}>
+                      <Link
+                        href={`/brands/${brand.slug}`}
+                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                      >
+                        {brand.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            {/* Manufacturers */}
+            <div className="relative group">
+              <button className="text-base font-semibold text-gray-800 hover:text-blue-600 px-4 py-2 flex items-center gap-1">
+                {t("manufacturers")}
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              <div className="absolute left-0 top-full mt-1 w-64 bg-white border border-gray-200 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                <ul className="py-2">
+                  {manufacturers.map((mfr) => (
+                    <li key={mfr.slug}>
+                      <Link
+                        href={`/manufacturers/${mfr.slug}`}
+                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                      >
+                        {mfr.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            {/* Blog */}
+            <div>
+              <Link
+                href="/blog"
+                className="text-base font-semibold text-gray-800 hover:text-blue-600 px-4 py-2"
+              >
+                Blog
+              </Link>
+            </div>
+
+          </div>
         </div>
       </div>
     </header>

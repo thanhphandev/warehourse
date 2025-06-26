@@ -1,0 +1,47 @@
+### 1. Create Viet Cuong Vermicelli Cooperative
+POST http://localhost:3000/api/brand
+Content-Type: application/json
+
+{
+  "name": "Viet Cuong Vermicelli Cooperative",
+  "slug": "viet-cuong-vermicelli-cooperative",
+  "logo": "https://www.lottemart.vn/media/catalog/product/cache/0x0/8/9/8938502881020-bb.jpg.webp",
+  "description": "Hợp tác xã bún miến Viet Cuong thành lập năm 2007, chuyên sản xuất bún dong, bún sắn, bún khoai lang đạt chuẩn OCOP 5 sao. Đến năm 2024, doanh thu đạt ~16 tỷ VND/năm, xuất khẩu sang châu Âu, Hàn Quốc, Đài Loan… Mô hình ứng dụng dây chuyền sấy tự động, tạo việc làm ổn định cho 30 lao động địa phương."
+}
+
+### 2. Create SPEVI FOOD CO., LTD
+POST http://localhost:3000/api/brand
+Content-Type: application/json
+
+{
+  "name": "SPEVI FOOD CO., LTD",
+  "slug": "spevi-food-co-ltd",
+  "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbJ6Y9UlLq0e_apTKPPl0CVnICIcViKrCG1Q&s",
+  "description": "SPEVI Food Co., Ltd thành lập năm 2015 tại TP. Hồ Chí Minh, chuyên xuất khẩu rau quả sấy khô và trái cây đóng hộp. Sản phẩm chính gồm trái cây sấy dẻo, nông sản hữu cơ, đã xuất khẩu sang thị trường Mỹ, EU và Nhật Bản. Công ty đang mở rộng sang mảng thực phẩm chức năng từ thảo dược Việt Nam."
+}
+
+### 3. Create PHUONG NGUYEN VIET NAM CO., LTD
+POST http://localhost:3000/api/brand
+Content-Type: application/json
+
+{
+  "name": "PHUONG NGUYEN VIET NAM CO., LTD",
+  "slug": "phuong-nguyen-viet-nam-co-ltd",
+  "logo": "https://cdnv2.tgdd.vn/ketnoicungcau/Contents/images/upload/companylogo/2024913/85824589/logo-04-085824130920245NHWU.jpg",
+  "description": "Phương Nguyên Việt Nam Co., Ltd (mã số thuế 4101592254) thành lập ngày 23/04/2021, trụ sở tại Bình Định. Chuyên sản xuất bánh tráng, các sản phẩm từ tinh bột (gạo, khoai môn), đồng thời kinh doanh xuất nhập khẩu nông sản và máy chế biến thực phẩm."
+}
+
+### 4. Create SAO KHUE FOODS JSC
+POST http://localhost:3000/api/brand
+Content-Type: application/json
+
+{
+  "name": "SAO KHUE FOODS JSC",
+  "slug": "sao-khue-foods-jsc",
+  "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9zI44ttkLoJcF6xUWWbhuDOqvblLLdWW-Lw&s",
+  "description": "SAO KHUE FOODS JSC (SK Foods JSC), thành lập ngày 12/08/2019 tại TP. Thủ Đức, TP. HCM. Chuyên sản xuất mì ống, mì sợi, ống hút gạo và các sản phẩm từ bột gạo, khoai lang, bún, miến… Nhà máy đặt tại Đồng Tháp. Công ty nổi bật với tiêu chí “sống sạch để xanh – ăn lành để khỏe”, áp dụng quy trình sạch, bền vững, với chứng nhận Halal, HACCP và hướng đến thị trường Mỹ, EU và Nhật Bản."
+}
+
+### 5. Get all brands
+GET http://localhost:3000/api/brand
+Content-Type: application/json

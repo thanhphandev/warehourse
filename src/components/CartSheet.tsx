@@ -46,7 +46,7 @@ export function CartSheet() {
               {totalItems}
             </span>
           )}
-          <span className="ml-2">{formatCurrencyVND(totalPrice)}</span>
+          <span className="ml-2 hidden md:block">{formatCurrencyVND(totalPrice)}</span>
         </Button>
       </SheetTrigger>
 
