@@ -1,0 +1,1003 @@
+### Product List
+GET http://localhost:3000/api/products
+Accept: application/json
+
+### Product List with filter
+GET http://localhost:3000/api/products?brand_id={{brand_id}}&categories={{category_id}}&search={{search}}&page=1&limit=20
+Accept: application/json
+
+### Product Detail by ID
+GET http://localhost:3000/api/products/{{product_id}}
+Accept: application/json
+
+### Product Detail by Slug
+GET http://localhost:3000/api/products/slug/{{slug}}
+Accept: application/json
+
+### Create Product
+POST http://localhost:3000/api/products
+Content-Type: application/json
+
+{
+  "sku": "PN-BTMDN-40G",
+  "slug": "banh-trang-me-den-nuong-40g",
+  "brand_id": "685bb21bad49078d4fe72a04",
+  "manufacturer_id": "685d02a504c55be8bbbd08fc",
+  "categories": ["685d04aa04c55be8bbbd0903"],
+
+  "product_name": {
+    "vi": "Bánh tráng mè đen nướng (40g)",
+    "en": "Grilled black sesame rice crackers (40g)"
+  },
+
+  "description": {
+    "vi": "Bánh được làm từ thành phần chính là gạo, mè đen, bột mì, muối,…\n\nBánh được sản xuất và đóng gói trong dây chuyền khép kín với công nghệ hiện đại nên bánh giữ được độ giòn lâu, vị thơm của gạo, vị béo của mè và đặc biệt là đảm bảo an toàn vệ sinh thực phẩm.",
+    "en": "The cake is made primarily from rice, black sesame, wheat flour, salt, and other ingredients.\n\nIt is produced and packaged on a closed-loop production line using modern technology, which helps the cake maintain its crispiness, the fragrant aroma of rice, the rich taste of sesame, and most importantly, ensures food safety and hygiene."
+  },
+
+  "ingredients": {
+    "vi": "Gạo, mè đen, bột mì, muối,…",
+    "en": "Rice, black sesame, wheat flour, salt, etc."
+  },
+
+  "image": "https://i.postimg.cc/LXWr50kM/gaomeden.png",
+
+  "net_weight": {
+    "value": 40,
+    "unit": "g"
+  },
+
+  "shelf_life": {
+    "value": 5,
+    "unit": "months"
+  },
+
+  "usage_instructions": {
+    "vi": ["Dùng ngay sau khi mở bì."],
+    "en": ["Consume immediately after opening the package."]
+  },
+
+  "storage_instructions": {
+    "vi": "Bảo quản nơi khô ráo thoáng mát, tránh ánh nắng mặt trời trực tiếp.",
+    "en": "Store in a cool, dry place, away from direct sunlight."
+  },
+
+  "dietary_info": {
+    "suitability": {
+      "vi": [],
+      "en": []
+    },
+    "allergen_warnings": {
+      "vi": [],
+      "en": []
+    }
+  },
+
+  "packaging_details": {
+    "vi": null,
+    "en": null
+  },
+
+  "additional_info": [
+    {
+      "key_vi": "Xuất xứ",
+      "key_en": "Origin",
+      "value_vi": "Việt Nam",
+      "value_en": "Vietnam"
+    }
+  ]
+}
+
+### Create another product
+POST http://localhost:3000/api/products
+{
+  "sku": "PN-BTRBN-40G",
+  "slug": "banh-trang-rong-bien-nuong-40g",
+  "brand_id": "{{brand_id}}",
+  "manufacturer_id": "{{manufacturer_id}}",
+  "categories": ["{{category_id}}"],
+
+  "product_name": {
+    "vi": "Bánh tráng rong biển nướng (40g)",
+    "en": "Grilled seaweed rice crackers (40g)"
+  },
+
+  "description": {
+    "vi": "Bánh được làm từ thành phần chính là gạo, rong biển, ớt, tỏi, hành hương, mè trắng, bột mì, muối…\n\nBánh được sản xuất và đóng gói trong dây chuyền khép kín với công nghệ hiện đại nên bánh giữ được độ giòn lâu, vị thơm của gạo, vị béo của mè và đặc biệt là đảm bảo an toàn vệ sinh thực phẩm.",
+    "en": "The cake is primarily made from rice, seaweed, chili, garlic, shallots, white sesame, wheat flour, salt, and other ingredients.\n\nIt is produced and packaged on a closed-loop production line using modern technology, which helps the cake maintain its crispiness, the fragrant aroma of rice, the rich taste of sesame, and most importantly, ensures food safety and hygiene."
+  },
+
+  "ingredients": {
+    "vi": "Gạo, rong biển, ớt, tỏi, hành hương, mè trắng, bột mì, muối…",
+    "en": "Rice, seaweed, chili, garlic, shallots, white sesame, wheat flour, salt, etc."
+  },
+
+  "image": "https://example.com/images/banh-trang-rong-bien-nuong.jpg",
+
+  "net_weight": {
+    "value": 40,
+    "unit": "g"
+  },
+
+  "shelf_life": {
+    "value": 5,
+    "unit": "months"
+  },
+
+  "usage_instructions": {
+    "vi": ["Dùng ngay sau khi mở bì."],
+    "en": ["Consume immediately after opening the package."]
+  },
+
+  "storage_instructions": {
+    "vi": "Bảo quản nơi khô ráo thoáng mát, tránh ánh nắng mặt trời trực tiếp.",
+    "en": "Store in a cool, dry place, away from direct sunlight."
+  },
+
+  "dietary_info": {
+    "suitability": {
+      "vi": [],
+      "en": []
+    },
+    "allergen_warnings": {
+      "vi": [],
+      "en": []
+    }
+  },
+
+  "packaging_details": {
+    "vi": null,
+    "en": null
+  },
+
+  "additional_info": [
+    {
+      "key_vi": "Xuất xứ",
+      "key_en": "Origin",
+      "value_vi": "Việt Nam",
+      "value_en": "Vietnam"
+    }
+  ]
+}
+
+{
+  "sku": "PN-SNACK-RB-35G",
+  "slug": "snack-banh-trang-nuong-rong-bien-35g",
+  "brand_id": "{{brand_id}}",
+  "manufacturer_id": "{{manufacturer_id}}",
+  "categories": ["{{category_id}}"],
+
+  "product_name": {
+    "vi": "Snack bánh tráng nướng rong biển (35g)",
+    "en": "Rico - Grilled seaweed rice paper snack (35g)"
+  },
+
+  "description": {
+    "vi": "Thành phần: Bột mì (60%), rong biển (15%), mè (15%), hành, muối, ớt.\nTrọng lượng: 35 gram.\nHạn sử dụng: xem trên bao bì sản phẩm.\nBảo quản: Để nơi thoáng mát.\nCách sử dụng: Mở bao và ăn ngay.\nChất bảo quản: Sản phẩm không sử dụng chất bảo quản, không sử dụng màu thực phẩm.\nThông tin cảnh báo: Không dùng khi sản phẩm bị mốc hoặc hết hạn sử dụng.",
+    "en": "Ingredients: Wheat flour (60%), seaweed (15%), sesame (15%), shallots, salt, chili.\nNet weight: 35 grams.\nShelf life: See packaging for expiry date.\nStorage: Store in a cool, dry place.\nUsage instructions: Open the package and consume immediately.\nPreservatives: This product contains no preservatives and no artificial coloring.\nWarning: Do not consume if the product is moldy or past its expiry date."
+  },
+
+  "ingredients": {
+    "vi": "Bột mì (60%), rong biển (15%), mè (15%), hành, muối, ớt",
+    "en": "Wheat flour (60%), seaweed (15%), sesame (15%), shallots, salt, chili"
+  },
+
+  "image": "https://example.com/images/snack-rong-bien-35g.jpg",
+
+  "net_weight": {
+    "value": 35,
+    "unit": "g"
+  },
+
+  "shelf_life": {
+    "value": 0,
+    "unit": "months"
+  },
+
+  "usage_instructions": {
+    "vi": ["Mở bao và ăn ngay."],
+    "en": ["Open the package and consume immediately."]
+  },
+
+  "storage_instructions": {
+    "vi": "Để nơi thoáng mát.",
+    "en": "Store in a cool, dry place."
+  },
+
+  "dietary_info": {
+    "suitability": {
+      "vi": [],
+      "en": []
+    },
+    "allergen_warnings": {
+      "vi": ["Không dùng khi sản phẩm bị mốc hoặc hết hạn sử dụng."],
+      "en": ["Do not consume if the product is moldy or past its expiry date."]
+    }
+  },
+
+  "packaging_details": {
+    "vi": null,
+    "en": null
+  },
+
+  "additional_info": [
+    {
+      "key_vi": "Chất bảo quản",
+      "key_en": "Preservatives",
+      "value_vi": "Không sử dụng chất bảo quản, không sử dụng màu thực phẩm.",
+      "value_en": "No preservatives, no artificial coloring."
+    },
+    {
+      "key_vi": "Xuất xứ",
+      "key_en": "Origin",
+      "value_vi": "Việt Nam",
+      "value_en": "Vietnam"
+    }
+  ]
+}
+
+
+{
+  "sku": "PN-SNACK-TOMCAY-35G",
+  "slug": "snack-banh-trang-nuong-tom-cay-35g",
+  "brand_id": "{{brand_id}}",
+  "manufacturer_id": "{{manufacturer_id}}",
+  "categories": ["{{category_id}}"],
+
+  "product_name": {
+    "vi": "Snack bánh tráng nướng tôm cay (35g)",
+    "en": "Rico - Spicy grilled shrimp rice paper snack (35g)"
+  },
+
+  "description": {
+    "vi": "Thành phần: Bột mì (60%), dừa (25%), tôm (10%), mè, hành, muối, tiêu, ớt.\nTrọng lượng: 35 gram.\nHạn sử dụng: xem trên bao bì sản phẩm.\nBảo quản: Để nơi thoáng mát.\nCách sử dụng: Mở bao và ăn ngay.\nChất bảo quản: Sản phẩm không sử dụng chất bảo quản, không sử dụng màu thực phẩm.\nThông tin cảnh báo: Không dùng khi sản phẩm bị mốc hoặc hết hạn sử dụng.",
+    "en": "Ingredients: Wheat flour (60%), coconut (25%), shrimp (10%), sesame, shallots, salt, pepper, chili.\nNet weight: 35 grams.\nShelf life: See packaging for expiry date.\nStorage: Store in a cool, dry place.\nUsage instructions: Open the package and consume immediately.\nPreservatives: This product contains no preservatives and no artificial coloring.\nWarning: Do not consume if the product is moldy or past its expiry date."
+  },
+
+  "ingredients": {
+    "vi": "Bột mì (60%), dừa (25%), tôm (10%), mè, hành, muối, tiêu, ớt",
+    "en": "Wheat flour (60%), coconut (25%), shrimp (10%), sesame, shallots, salt, pepper, chili"
+  },
+
+  "image": "https://example.com/images/snack-tom-cay-35g.jpg",
+
+  "net_weight": {
+    "value": 35,
+    "unit": "g"
+  },
+
+  "shelf_life": {
+    "value": 0,
+    "unit": "months"
+  },
+
+  "usage_instructions": {
+    "vi": ["Mở bao và ăn ngay."],
+    "en": ["Open the package and consume immediately."]
+  },
+
+  "storage_instructions": {
+    "vi": "Để nơi thoáng mát.",
+    "en": "Store in a cool, dry place."
+  },
+
+  "dietary_info": {
+    "suitability": {
+      "vi": [],
+      "en": []
+    },
+    "allergen_warnings": {
+      "vi": ["Không dùng khi sản phẩm bị mốc hoặc hết hạn sử dụng."],
+      "en": ["Do not consume if the product is moldy or past its expiry date."]
+    }
+  },
+
+  "packaging_details": {
+    "vi": null,
+    "en": null
+  },
+
+  "additional_info": [
+    {
+      "key_vi": "Chất bảo quản",
+      "key_en": "Preservatives",
+      "value_vi": "Không sử dụng chất bảo quản, không sử dụng màu thực phẩm.",
+      "value_en": "No preservatives, no artificial coloring."
+    },
+    {
+      "key_vi": "Xuất xứ",
+      "key_en": "Origin",
+      "value_vi": "Việt Nam",
+      "value_en": "Vietnam"
+    }
+  ]
+}
+
+{
+  "sku": "PN-SNACK-BOCAY-35G",
+  "slug": "snack-banh-trang-nuong-bo-cay-35g",
+  "brand_id": "{{brand_id}}",
+  "manufacturer_id": "{{manufacturer_id}}",
+  "categories": ["{{category_id}}"],
+
+  "product_name": {
+    "vi": "Snack bánh tráng nướng bò cay (35g)",
+    "en": "Rico - Spicy grilled beef rice paper snack (35g)"
+  },
+
+  "description": {
+    "vi": "Thành phần: Bột mì (60%), dừa (25%), khô bò (10%), mè, hành, muối, tiêu, ớt.\nTrọng lượng: 35 gram.\nHạn sử dụng: xem trên bao bì sản phẩm.\nBảo quản: Để nơi thoáng mát.\nCách sử dụng: Mở bao và ăn ngay.\nChất bảo quản: Sản phẩm không sử dụng chất bảo quản, không sử dụng màu thực phẩm.\nThông tin cảnh báo: Không dùng khi sản phẩm bị mốc hoặc hết hạn sử dụng.",
+    "en": "Ingredients: Wheat flour (60%), coconut (25%), dried beef (10%), sesame, shallots, salt, pepper, chili.\nNet weight: 35 grams.\nShelf life: See packaging for expiry date.\nStorage: Store in a cool, dry place.\nUsage instructions: Open the package and consume immediately.\nPreservatives: This product contains no preservatives and no artificial coloring.\nWarning: Do not consume if the product is moldy or past its expiry date."
+  },
+
+  "ingredients": {
+    "vi": "Bột mì (60%), dừa (25%), khô bò (10%), mè, hành, muối, tiêu, ớt",
+    "en": "Wheat flour (60%), coconut (25%), dried beef (10%), sesame, shallots, salt, pepper, chili"
+  },
+
+  "image": "https://example.com/images/snack-bo-cay-35g.jpg",
+
+  "net_weight": {
+    "value": 35,
+    "unit": "g"
+  },
+
+  "shelf_life": {
+    "value": 0,
+    "unit": "months"
+  },
+
+  "usage_instructions": {
+    "vi": ["Mở bao và ăn ngay."],
+    "en": ["Open the package and consume immediately."]
+  },
+
+  "storage_instructions": {
+    "vi": "Để nơi thoáng mát.",
+    "en": "Store in a cool, dry place."
+  },
+
+  "dietary_info": {
+    "suitability": {
+      "vi": [],
+      "en": []
+    },
+    "allergen_warnings": {
+      "vi": ["Không dùng khi sản phẩm bị mốc hoặc hết hạn sử dụng."],
+      "en": ["Do not consume if the product is moldy or past its expiry date."]
+    }
+  },
+
+  "packaging_details": {
+    "vi": null,
+    "en": null
+  },
+
+  "additional_info": [
+    {
+      "key_vi": "Chất bảo quản",
+      "key_en": "Preservatives",
+      "value_vi": "Không sử dụng chất bảo quản, không sử dụng màu thực phẩm.",
+      "value_en": "No preservatives, no artificial coloring."
+    },
+    {
+      "key_vi": "Xuất xứ",
+      "key_en": "Origin",
+      "value_vi": "Việt Nam",
+      "value_en": "Vietnam"
+    }
+  ]
+}
+
+
+{
+  "sku": "VC-MIENDONG-200G",
+  "slug": "mien-dong-viet-cuong-200g",
+  "brand_id": "{{brand_id}}",
+  "manufacturer_id": "685d023d04c55be8bbbd08f6",
+  "categories": ["{{category_id}}"],
+
+  "product_name": {
+    "vi": "Miến Dong Việt Cường (200g)",
+    "en": "Tapioca vermicelli (200g)"
+  },
+
+  "description": {
+    "vi": "Thành phần: Tinh bột dong, nước.\n\nHướng dẫn sử dụng:\n– Nấu: Cho miến trực tiếp vào nồi nước dùng khoảng 3 phút.\n– Lẩu: Cho miến trực tiếp vào nồi lẩu 3-4 phút là dùng được.\n– Xào: Trần miến trong nước khoảng 3 phút, xào miến với gia vị tuỳ ý.\n\nĐóng gói và Bảo quản:\n– Được đóng gói sẵn 500gram, theo quy trình sản xuất ISO22000.\n– Bảo quản nơi khô ráo, thoáng mát.",
+    "en": "Ingredients: Arrowroot starch, water.\n\nUsage instructions:\n– Boiling: Cook the noodles directly in broth for about 3 minutes.\n– Hot pot: Add the noodles directly to the hot pot and cook for 3–4 minutes before serving.\n– Stir-frying: Soak the noodles in water for about 3 minutes, then stir-fry with seasoning as desired.\n\nPackaging and Storage:\n– Pre-packaged in 500 grams, produced under ISO 22000 standards.\n– Store in a cool, dry place."
+  },
+
+  "ingredients": {
+    "vi": "Tinh bột dong, nước",
+    "en": "Arrowroot starch, water"
+  },
+
+  "image": "https://example.com/images/mien-dong-viet-cuong-200g.jpg",
+
+  "net_weight": {
+    "value": 200,
+    "unit": "g"
+  },
+
+  "shelf_life": {
+    "value": 0,
+    "unit": "months"
+  },
+
+  "usage_instructions": {
+    "vi": [
+      "Nấu: Cho miến trực tiếp vào nồi nước dùng khoảng 3 phút.",
+      "Lẩu: Cho miến trực tiếp vào nồi lẩu 3-4 phút là dùng được.",
+      "Xào: Trần miến trong nước khoảng 3 phút, xào miến với gia vị tuỳ ý."
+    ],
+    "en": [
+      "Boiling: Cook the noodles directly in broth for about 3 minutes.",
+      "Hot pot: Add the noodles directly to the hot pot and cook for 3–4 minutes before serving.",
+      "Stir-frying: Soak the noodles in water for about 3 minutes, then stir-fry with seasoning as desired."
+    ]
+  },
+
+  "storage_instructions": {
+    "vi": "Bảo quản nơi khô ráo, thoáng mát.",
+    "en": "Store in a cool, dry place."
+  },
+
+  "dietary_info": {
+    "suitability": {
+      "vi": [],
+      "en": []
+    },
+    "allergen_warnings": {
+      "vi": [],
+      "en": []
+    }
+  },
+
+  "packaging_details": {
+    "vi": "Được đóng gói sẵn 500gram, theo quy trình sản xuất ISO22000.",
+    "en": "Pre-packaged in 500 grams, produced under ISO 22000 standards."
+  },
+
+  "additional_info": [
+    {
+      "key_vi": "Xuất xứ",
+      "key_en": "Origin",
+      "value_vi": "Việt Nam",
+      "value_en": "Vietnam"
+    }
+  ]
+}
+
+
+
+{
+  "sku": "VC-MIENTOIDEN-200G",
+  "slug": "mien-toi-den-viet-cuong-200g",
+  "brand_id": "{{brand_id}}",
+  "manufacturer_id": "{{manufacturer_id}}",
+  "categories": ["{{category_id}}"],
+
+  "product_name": {
+    "vi": "Miến Tỏi Đen Việt Cường (200g)",
+    "en": "Black garlic vermicelli (200g)"
+  },
+
+  "description": {
+    "vi": "Thành phần: 85% Bột dong, 10% Tỏi đen, 5% Nước.\n\nHướng dẫn sử dụng:\n– Nấu: Cho miến trực tiếp vào nồi nước dùng khoảng 3 phút.\n– Lẩu: Cho miến trực tiếp vào nồi lẩu 3-4 phút là dùng được.\n– Xào: Trần miến trong nước khoảng 3 phút, xào miến với gia vị tuỳ ý.\n\nĐóng gói và Bảo quản:\n– Được đóng gói sẵn 200gram, theo quy trình sản xuất ISO22000.\n– Bảo quản nơi khô ráo, thoáng mát.",
+    "en": "Ingredients: 85% arrowroot starch, 10% black garlic, 5% water.\n\nUsage instructions:\n– Boiling: Cook the noodles directly in broth for about 3 minutes.\n– Hot pot: Add the noodles directly to the hot pot and cook for 3–4 minutes before serving.\n– Stir-frying: Soak the noodles in water for about 3 minutes, then stir-fry with seasoning as desired.\n\nPackaging and Storage:\n– Pre-packaged in 200 grams, produced under ISO 22000 standards.\n– Store in a cool, dry place."
+  },
+
+  "ingredients": {
+    "vi": "85% Bột dong, 10% Tỏi đen, 5% Nước",
+    "en": "85% arrowroot starch, 10% black garlic, 5% water"
+  },
+
+  "image": "https://example.com/images/mien-toi-den-viet-cuong-200g.jpg",
+
+  "net_weight": {
+    "value": 200,
+    "unit": "g"
+  },
+
+  "shelf_life": {
+    "value": 0,
+    "unit": "months"
+  },
+
+  "usage_instructions": {
+    "vi": [
+      "Nấu: Cho miến trực tiếp vào nồi nước dùng khoảng 3 phút.",
+      "Lẩu: Cho miến trực tiếp vào nồi lẩu 3-4 phút là dùng được.",
+      "Xào: Trần miến trong nước khoảng 3 phút, xào miến với gia vị tuỳ ý."
+    ],
+    "en": [
+      "Boiling: Cook the noodles directly in broth for about 3 minutes.",
+      "Hot pot: Add the noodles directly to the hot pot and cook for 3–4 minutes before serving.",
+      "Stir-frying: Soak the noodles in water for about 3 minutes, then stir-fry with seasoning as desired."
+    ]
+  },
+
+  "storage_instructions": {
+    "vi": "Bảo quản nơi khô ráo, thoáng mát.",
+    "en": "Store in a cool, dry place."
+  },
+
+  "dietary_info": {
+    "suitability": {
+      "vi": [],
+      "en": []
+    },
+    "allergen_warnings": {
+      "vi": [],
+      "en": []
+    }
+  },
+
+  "packaging_details": {
+    "vi": "Được đóng gói sẵn 200gram, theo quy trình sản xuất ISO22000.",
+    "en": "Pre-packaged in 200 grams, produced under ISO 22000 standards."
+  },
+
+  "additional_info": [
+    {
+      "key_vi": "Xuất xứ",
+      "key_en": "Origin",
+      "value_vi": "Việt Nam",
+      "value_en": "Vietnam"
+    }
+  ]
+}
+
+
+{
+  "sku": "VC-MIENKHOAILANG-200G",
+  "slug": "mien-khoai-lang-viet-cuong-200g",
+  "brand_id": "{{brand_id}}",
+  "manufacturer_id": "{{manufacturer_id}}",
+  "categories": ["{{category_id}}"],
+
+  "product_name": {
+    "vi": "Miến Khoai Lang Việt Cường (200g)",
+    "en": "Sweet potato vermicilli (200g)"
+  },
+
+  "description": {
+    "vi": "Thành phần: Tinh bột dong 70%, bột khoai lang 30%.\n\nHướng dẫn sử dụng:\n– Nấu: Cho miến trực tiếp vào nồi nước dùng khoảng 3 phút.\n– Lẩu: Cho miến trực tiếp vào nồi lẩu 3-4 phút là dùng được.\n– Xào: Trần miến trong nước khoảng 3 phút, xào miến với gia vị tuỳ ý.\n\nĐóng gói và Bảo quản:\n– Được đóng gói sẵn 500gram, theo quy trình sản xuất ISO22000.\n– Bảo quản nơi khô ráo, thoáng mát.",
+    "en": "Ingredients: 70% arrowroot starch, 30% sweet potato starch.\n\nUsage instructions:\n– Boiling: Cook the noodles directly in broth for about 3 minutes.\n– Hot pot: Add the noodles directly to the hot pot and cook for 3–4 minutes before serving.\n– Stir-frying: Soak the noodles in water for about 3 minutes, then stir-fry with seasoning as desired.\n\nPackaging and Storage:\n– Pre-packaged in 500 grams, produced under ISO 22000 standards.\n– Store in a cool, dry place."
+  },
+
+  "ingredients": {
+    "vi": "Tinh bột dong 70%, bột khoai lang 30%",
+    "en": "70% arrowroot starch, 30% sweet potato starch"
+  },
+
+  "image": "https://example.com/images/mien-khoai-lang-viet-cuong-200g.jpg",
+
+  "net_weight": {
+    "value": 200,
+    "unit": "g"
+  },
+
+  "shelf_life": {
+    "value": 0,
+    "unit": "months"
+  },
+
+  "usage_instructions": {
+    "vi": [
+      "Nấu: Cho miến trực tiếp vào nồi nước dùng khoảng 3 phút.",
+      "Lẩu: Cho miến trực tiếp vào nồi lẩu 3-4 phút là dùng được.",
+      "Xào: Trần miến trong nước khoảng 3 phút, xào miến với gia vị tuỳ ý."
+    ],
+    "en": [
+      "Boiling: Cook the noodles directly in broth for about 3 minutes.",
+      "Hot pot: Add the noodles directly to the hot pot and cook for 3–4 minutes before serving.",
+      "Stir-frying: Soak the noodles in water for about 3 minutes, then stir-fry with seasoning as desired."
+    ]
+  },
+
+  "storage_instructions": {
+    "vi": "Bảo quản nơi khô ráo, thoáng mát.",
+    "en": "Store in a cool, dry place."
+  },
+
+  "dietary_info": {
+    "suitability": {
+      "vi": [],
+      "en": []
+    },
+    "allergen_warnings": {
+      "vi": [],
+      "en": []
+    }
+  },
+
+  "packaging_details": {
+    "vi": "Được đóng gói sẵn 500gram, theo quy trình sản xuất ISO22000.",
+    "en": "Pre-packaged in 500 grams, produced under ISO 22000 standards."
+  },
+
+  "additional_info": [
+    {
+      "key_vi": "Xuất xứ",
+      "key_en": "Origin",
+      "value_vi": "Việt Nam",
+      "value_en": "Vietnam"
+    }
+  ]
+}
+
+
+{
+  "sku": "BLT-BUN-KHOAILANGTIM-300G",
+  "slug": "bun-khoai-lang-tim-300g",
+  "brand_id": "{{brand_id}}",
+  "manufacturer_id": "{{manufacturer_id}}",
+  "categories": ["{{category_id}}"],
+
+  "product_name": {
+    "vi": "Bún khoai lang tím (300g)",
+    "en": "Purple sweet potato vermicelli (300g)"
+  },
+
+  "description": {
+    "vi": "Thành phần: Bột gạo, khoai lang tím, bột sắn.\nTrọng lượng: 300g.\nHạn sử dụng: Xem trên bao bì sản phẩm.\nBảo quản: Để nơi thoáng mát.\nChất bảo quản: Sản phẩm không sử dụng chất bảo quản, không sử dụng màu thực phẩm.\nPhù hợp: Người ăn chay, người dị ứng Lactose, người dị ứng Gluten, người ăn kiêng, người bận rộn.\nThông tin cảnh báo: Không dùng khi sản phẩm bị mốc hoặc hết hạn sử dụng.",
+    "en": "Ingredients: Rice flour, purple sweet potato, tapioca starch.\nNet weight: 300g.\nShelf life: See packaging for expiry date.\nStorage: Store in a cool, dry place.\nPreservatives: This product contains no preservatives and no artificial coloring.\nSuitable for: Vegetarians, individuals with lactose intolerance, gluten allergy, those on a diet, and busy individuals.\nWarning: Do not consume if the product is moldy or past its expiry date."
+  },
+
+  "ingredients": {
+    "vi": "Bột gạo, khoai lang tím, bột sắn",
+    "en": "Rice flour, purple sweet potato, tapioca starch"
+  },
+
+  "image": "https://example.com/images/bun-khoai-lang-tim-300g.jpg",
+
+  "net_weight": {
+    "value": 300,
+    "unit": "g"
+  },
+
+  "shelf_life": {
+    "value": 0,
+    "unit": "months"
+  },
+
+  "usage_instructions": {
+    "vi": [],
+    "en": []
+  },
+
+  "storage_instructions": {
+    "vi": "Để nơi thoáng mát.",
+    "en": "Store in a cool, dry place."
+  },
+
+  "dietary_info": {
+    "suitability": {
+      "vi": ["Người ăn chay", "Người dị ứng Lactose", "Người dị ứng Gluten", "Người ăn kiêng", "Người bận rộn"],
+      "en": ["Vegetarians", "Individuals with lactose intolerance", "Gluten allergy", "Those on a diet", "Busy individuals"]
+    },
+    "allergen_warnings": {
+      "vi": [],
+      "en": []
+    }
+  },
+
+  "packaging_details": {
+    "vi": "Không sử dụng chất bảo quản, không sử dụng màu thực phẩm.",
+    "en": "This product contains no preservatives and no artificial coloring."
+  },
+
+  "additional_info": [
+    {
+      "key_vi": "Xuất xứ",
+      "key_en": "Origin",
+      "value_vi": "Việt Nam",
+      "value_en": "Vietnam"
+    }
+  ]
+}
+
+
+{
+  "sku": "NLT-NUI-KHOAILANGTIM-300G",
+  "slug": "nui-khoai-lang-tim-300g",
+  "brand_id": "{{brand_id}}",
+  "manufacturer_id": "{{manufacturer_id}}",
+  "categories": ["{{category_id}}"],
+
+  "product_name": {
+    "vi": "Nui khoai lang tím (300g)",
+    "en": "Purple sweet potato ziti (300g)"
+  },
+
+  "description": {
+    "vi": "Thành phần: Bột gạo, khoai lang tím, bột sắn.\nTrọng lượng: 300g.\nHạn sử dụng: Xem trên bao bì sản phẩm.\nBảo quản: Để nơi thoáng mát.\nChất bảo quản: Sản phẩm không sử dụng chất bảo quản, không sử dụng màu thực phẩm.\nPhù hợp: Người ăn chay, người dị ứng Lactose, người dị ứng Gluten, người ăn kiêng, người bận rộn.\nThông tin cảnh báo: Không dùng khi sản phẩm bị mốc hoặc hết hạn sử dụng.",
+    "en": "Ingredients: Rice flour, purple sweet potato, tapioca starch.\nNet weight: 300g.\nShelf life: See packaging for expiry date.\nStorage: Store in a cool, dry place.\nPreservatives: This product contains no preservatives and no artificial coloring.\nSuitable for: Vegetarians, individuals with lactose intolerance, gluten allergy, those on a diet, and busy individuals.\nWarning: Do not consume if the product is moldy or past its expiry date."
+  },
+
+  "ingredients": {
+    "vi": "Bột gạo, khoai lang tím, bột sắn",
+    "en": "Rice flour, purple sweet potato, tapioca starch"
+  },
+
+  "image": "https://example.com/images/nui-khoai-lang-tim-300g.jpg",
+
+  "net_weight": {
+    "value": 300,
+    "unit": "g"
+  },
+
+  "shelf_life": {
+    "value": 0,
+    "unit": "months"
+  },
+
+  "usage_instructions": {
+    "vi": [],
+    "en": []
+  },
+
+  "storage_instructions": {
+    "vi": "Để nơi thoáng mát.",
+    "en": "Store in a cool, dry place."
+  },
+
+  "dietary_info": {
+    "suitability": {
+      "vi": ["Người ăn chay", "Người dị ứng Lactose", "Người dị ứng Gluten", "Người ăn kiêng", "Người bận rộn"],
+      "en": ["Vegetarians", "Individuals with lactose intolerance", "Gluten allergy", "Those on a diet", "Busy individuals"]
+    },
+    "allergen_warnings": {
+      "vi": [],
+      "en": []
+    }
+  },
+
+  "packaging_details": {
+    "vi": "Sản phẩm không sử dụng chất bảo quản, không sử dụng màu thực phẩm.",
+    "en": "This product contains no preservatives and no artificial coloring."
+  },
+
+  "additional_info": [
+    {
+      "key_vi": "Xuất xứ",
+      "key_en": "Origin",
+      "value_vi": "Việt Nam",
+      "value_en": "Vietnam"
+    }
+  ]
+}
+
+
+{
+  "sku": "MLT-MIEN-KHOAILANGTIM-300G",
+  "slug": "mien-khoai-lang-tim-300g",
+  "brand_id": "{{brand_id}}",
+  "manufacturer_id": "{{manufacturer_id}}",
+  "categories": ["{{category_id}}"],
+
+  "product_name": {
+    "vi": "Miến khoai lang tím (300g)",
+    "en": "Purple sweet potato glass noodle (300g)"
+  },
+
+  "description": {
+    "vi": "Thành phần: Bột gạo, khoai lang tím, bột sắn.\nTrọng lượng: 300g.\nHạn sử dụng: Xem trên bao bì sản phẩm.\nBảo quản: Để nơi thoáng mát.\nChất bảo quản: Sản phẩm không sử dụng chất bảo quản, không sử dụng màu thực phẩm.\nPhù hợp: Người ăn chay, người dị ứng Lactose, người dị ứng Gluten, người ăn kiêng, người bận rộn.\nThông tin cảnh báo: Không dùng khi sản phẩm bị mốc hoặc hết hạn sử dụng.",
+    "en": "Ingredients: Rice flour, purple sweet potato, tapioca starch.\nNet weight: 300g.\nShelf life: See packaging for expiry date.\nStorage: Store in a cool, dry place.\nPreservatives: This product contains no preservatives and no artificial coloring.\nSuitable for: Vegetarians, individuals with lactose intolerance, gluten allergy, those on a diet, and busy individuals.\nWarning: Do not consume if the product is moldy or past its expiry date."
+  },
+
+  "ingredients": {
+    "vi": "Bột gạo, khoai lang tím, bột sắn",
+    "en": "Rice flour, purple sweet potato, tapioca starch"
+  },
+
+  "net_weight": {
+    "value": 300,
+    "unit": "g"
+  },
+
+  "shelf_life": {
+    "value": 0,
+    "unit": "months"
+  },
+
+  "usage_instructions": {
+    "vi": [],
+    "en": []
+  },
+
+  "storage_instructions": {
+    "vi": "Để nơi thoáng mát.",
+    "en": "Store in a cool, dry place."
+  },
+
+  "dietary_info": {
+    "suitability": {
+      "vi": ["Người ăn chay", "Người dị ứng Lactose", "Người dị ứng Gluten", "Người ăn kiêng", "Người bận rộn"],
+      "en": ["Vegetarians", "Individuals with lactose intolerance", "Gluten allergy", "Those on a diet", "Busy individuals"]
+    },
+    "allergen_warnings": {
+      "vi": [],
+      "en": []
+    }
+  },
+
+  "packaging_details": {
+    "vi": "Sản phẩm không sử dụng chất bảo quản, không sử dụng màu thực phẩm.",
+    "en": "This product contains no preservatives and no artificial coloring."
+  },
+
+  "additional_info": [
+    {
+      "key_vi": "Xuất xứ",
+      "key_en": "Origin",
+      "value_vi": "Việt Nam",
+      "value_en": "Vietnam"
+    }
+  ]
+}
+
+{
+  "sku": "BUN-TUOI-SAY-KHO-300G",
+  "slug": "bun-tuoi-say-kho-300g",
+  "brand_id": "{{brand_id}}",
+  "manufacturer_id": "{{manufacturer_id}}",
+  "categories": ["{{category_id}}"],
+
+  "product_name": {
+    "vi": "Bún tươi sấy khô (300g)",
+    "en": "Fresh rice vermicelli (300g)"
+  },
+
+  "description": {
+    "vi": "Bún tươi được làm từ bột gạo chất lượng cao, sấy khô bảo quản tiện lợi, giữ được độ dai và hương vị tự nhiên của gạo.\nHạn sử dụng: 12 tháng.\nBảo quản: Để nơi khô ráo, thoáng mát, tránh ánh nắng trực tiếp.",
+    "en": "Fresh rice vermicelli made from high-quality rice flour, dried for convenient storage, maintaining the chewy texture and natural rice flavor.\nShelf life: 12 months.\nStorage: Store in a cool, dry place, away from direct sunlight."
+  },
+
+  "ingredients": {
+    "vi": "Bột gạo, nước",
+    "en": "Rice flour, water"
+  },
+
+  "net_weight": {
+    "value": 300,
+    "unit": "g"
+  },
+
+  "shelf_life": {
+    "value": 12,
+    "unit": "months"
+  },
+
+  "usage_instructions": {
+    "vi": [
+      "Ngâm bún trong nước khoảng 10 phút trước khi nấu.",
+      "Nấu trong nước sôi khoảng 3-5 phút đến khi mềm."
+    ],
+    "en": [
+      "Soak vermicelli in water for about 10 minutes before cooking.",
+      "Cook in boiling water for 3-5 minutes until soft."
+    ]
+  },
+
+  "storage_instructions": {
+    "vi": "Để nơi khô ráo, thoáng mát, tránh ánh nắng trực tiếp.",
+    "en": "Store in a cool, dry place, away from direct sunlight."
+  },
+
+  "dietary_info": {
+    "suitability": {
+      "vi": ["Người ăn chay", "Người dị ứng Gluten"],
+      "en": ["Vegetarians", "Gluten sensitive individuals"]
+    },
+    "allergen_warnings": {
+      "vi": [],
+      "en": []
+    }
+  },
+
+  "packaging_details": {
+    "vi": "Đóng gói trong túi nilon chất lượng cao, đảm bảo an toàn thực phẩm.",
+    "en": "Packaged in high-quality plastic bags ensuring food safety."
+  },
+
+  "additional_info": [
+    {
+      "key_vi": "Xuất xứ",
+      "key_en": "Origin",
+      "value_vi": "Việt Nam",
+      "value_en": "Vietnam"
+    }
+  ]
+}
+
+
+{
+  "sku": "BUN-KHO-SAY-KHO-300G",
+  "slug": "bun-kho-say-kho-300g",
+  "brand_id": "{{brand_id}}",
+  "manufacturer_id": "{{manufacturer_id}}",
+  "categories": ["{{category_id}}"],
+
+  "product_name": {
+    "vi": "Bún khô sấy khô (300g)",
+    "en": "Dry rice vermicelli (300g)"
+  },
+
+  "description": {
+    "vi": "Bún khô được làm từ bột gạo chọn lọc, sấy khô đảm bảo bảo quản lâu dài, giữ nguyên hương vị truyền thống.\nHạn sử dụng: 18 tháng.\nBảo quản: Nơi khô ráo, thoáng mát, tránh ẩm ướt và ánh nắng trực tiếp.",
+    "en": "Dry rice vermicelli made from selected rice flour, dried to ensure long shelf life while preserving traditional flavor.\nShelf life: 18 months.\nStorage: Keep in a cool, dry place, avoid moisture and direct sunlight."
+  },
+
+  "ingredients": {
+    "vi": "Bột gạo",
+    "en": "Rice flour"
+  },
+
+  "net_weight": {
+    "value": 300,
+    "unit": "g"
+  },
+
+  "shelf_life": {
+    "value": 18,
+    "unit": "months"
+  },
+
+  "usage_instructions": {
+    "vi": [
+      "Ngâm bún trong nước khoảng 15 phút trước khi nấu.",
+      "Nấu trong nước sôi khoảng 5-7 phút đến khi mềm."
+    ],
+    "en": [
+      "Soak vermicelli in water for about 15 minutes before cooking.",
+      "Cook in boiling water for 5-7 minutes until soft."
+    ]
+  },
+
+  "storage_instructions": {
+    "vi": "Để nơi khô ráo, thoáng mát, tránh ánh nắng và độ ẩm.",
+    "en": "Store in a cool, dry place, avoid sunlight and moisture."
+  },
+
+  "dietary_info": {
+    "suitability": {
+      "vi": ["Người ăn chay", "Người dị ứng Gluten"],
+      "en": ["Vegetarians", "Gluten sensitive individuals"]
+    },
+    "allergen_warnings": {
+      "vi": [],
+      "en": []
+    }
+  },
+
+  "packaging_details": {
+    "vi": "Đóng gói trong túi nilon chất lượng cao, đảm bảo an toàn thực phẩm.",
+    "en": "Packaged in high-quality plastic bags ensuring food safety."
+  },
+
+  "additional_info": [
+    {
+      "key_vi": "Xuất xứ",
+      "key_en": "Origin",
+      "value_vi": "Việt Nam",
+      "value_en": "Vietnam"
+    }
+  ]
+}
+
+
+
+
+### Update Product
+PUT http://localhost:3000/api/products/{{product_id}}
+Content-Type: application/json
+
+{
+  // ...fields như khi tạo product
+}
+
+### Delete Product
+DELETE http://localhost:3000/api/products/{{product_id}}
+Accept: application/json

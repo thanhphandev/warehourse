@@ -1,0 +1,15 @@
+POST http://localhost:3000/api/category
+Content-Type: application/json
+
+{
+    "name": "Noodles",
+    "slug": "noodles",
+    "parent_id": null,
+    "ancestors": [],
+    "image": null,
+    "is_active": true
+  }
+
+### GET ALL CATEGORIES
+GET http://localhost:3000/api/category
+Content-Type: application/json

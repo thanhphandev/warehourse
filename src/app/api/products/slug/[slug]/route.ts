@@ -7,7 +7,10 @@ export async function GET(_req: NextRequest, { params }: { params: Promise<{ slu
     const { slug } = await params;
     await connectDb();
     
-    const product = await Product.findOne({ slug }).populate('brand_id').populate('category_ids');
+    const product = await Product.findOne({ slug })
+      .populate('brand_id')
+      .populate('manufacturer_id')
+      .populate('categories');
     
     if (!product) {
       return NextResponse.json({

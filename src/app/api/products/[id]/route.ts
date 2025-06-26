@@ -22,7 +22,10 @@ export async function GET(
 
   try {
     await connectDb();
-    const product = await Product.findById(id);
+    const product = await Product.findById(id)
+      .populate('brand_id')
+      .populate('manufacturer_id')
+      .populate('categories');
     if (!product) {
       return NextResponse.json({
         success: false,
@@ -72,7 +75,10 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: 
       }, { status: 400 });
     }
     await connectDb();
-    const product = await Product.findByIdAndUpdate(id, { ...body, updated_at: new Date() }, { new: true });
+    const product = await Product.findByIdAndUpdate(id, { ...body, updated_at: new Date() }, { new: true })
+      .populate('brand_id')
+      .populate('manufacturer_id')
+      .populate('categories');
     if (!product) {
       return NextResponse.json({
         success: false,
@@ -111,7 +117,10 @@ export async function DELETE(_req: NextRequest, { params }: { params: Promise<{ 
       }, { status: 400 });
     }
     await connectDb();
-    const product = await Product.findByIdAndDelete(id);
+    const product = await Product.findByIdAndDelete(id)
+      .populate('brand_id')
+      .populate('manufacturer_id')
+      .populate('categories');
     if (!product) {
       return NextResponse.json({
         success: false,

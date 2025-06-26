@@ -1,0 +1,49 @@
+### Create VIET CUONG FOOD CO., LTD
+POST http://localhost:3000/api/manufacturer
+Content-Type: application/json
+
+{
+  "name": "VIET CUONG FOOD CO., LTD",
+  "slug": "viet-cuong-food-co-ltd",
+  "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOJqLhnPSpq2Xz8kfBwQlJ1vnWb2iecvMs7A&s",
+  "address": "789 Trần Hưng Đạo, Quận 5, TP. Hồ Chí Minh",
+  "email": "contact@vietcuongfood.vn",
+  "phone": "+84 28 9988 7766",
+  "website": "https://vietcuongfood.vn",
+  "description": "VIET CUONG Food Co., Ltd thành lập năm 2010 tại TP. Hồ Chí Minh, chuyên sản xuất và xuất khẩu gạo thơm, gạo đặc sản vùng ĐBSCL. Sản phẩm đã có mặt tại thị trường Mỹ, Úc và châu Âu với chứng nhận ISO 22000 và HACCP."
+}
+
+### Create BONG LUA FOOD CO., LTD
+POST http://localhost:3000/api/manufacturer
+Content-Type: application/json
+
+{
+  "name": "BÔNG LÚA FOOD CO., LTD",
+  "slug": "bong-lua-food-co-ltd",
+  "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3m1RVw9hlQZvd0ZpmH-gTiQOaiYCKrRvpQQ&s",
+  "address": "321 Phan Đình Phùng, TP. Huế, Thừa Thiên Huế",
+  "email": "info@bonglua.vn",
+  "phone": "+84 54 3579 2468",
+  "website": "https://bonglua.vn",
+  "description": "Bông Lúa Food Co., Ltd khởi nghiệp năm 2018 tại Huế, nổi tiếng với các sản phẩm bánh tráng, bánh đa và snack từ gạo. Công ty cam kết sử dụng nguồn nguyên liệu hữu cơ, thân thiện môi trường và đang mở rộng sang kênh bán lẻ trong nước."
+}
+
+### Create PHUONG NGUYEN VIET NAM CO., LTD
+POST http://localhost:3000/api/manufacturer
+Content-Type: application/json
+
+{
+  "name": "PHUONG NGUYEN VIET NAM CO., LTD",
+  "slug": "phuong-nguyen-viet-nam-co-ltd",
+  "logo": "https://cdnv2.tgdd.vn/ketnoicungcau/Contents/images/upload/companylogo/2024913/85824589/logo-04-085824130920245NHWU.jpg",
+  "address": "456 Nguyễn Huệ, TP. Quy Nhơn, Bình Định",
+  "email": "contact@phuongnguyen.vn",
+  "phone": "+84 56 8765 4321",
+  "website": "https://phuongnguyen.vn",
+  "description": "Phương Nguyên Việt Nam Co., Ltd (mã số thuế 4101592254) thành lập ngày 23/04/2021, trụ sở tại Bình Định. Chuyên sản xuất bánh tráng, các sản phẩm từ tinh bột (gạo, khoai môn), đồng thời kinh doanh xuất nhập khẩu nông sản và máy chế biến thực phẩm."
+}
+
+
+### GET ALL MANUFACTURERS
+GET http://localhost:3000/api/manufacturer
+Content-Type: application/json

@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { connectDb } from '@/lib/mongodb';
 import Product from '@/models/product';
-import { ProductCreateSchema } from '@/models/zod/product';
 
 
 export async function GET(req: NextRequest) {
@@ -14,6 +13,7 @@ export async function GET(req: NextRequest) {
     // Validate and extract filters
     const status = searchParams.get('status');
     const brand_id = searchParams.get('brand_id');
+    const manufacturer_id = searchParams.get('manufacturer_id');
     const category_id = searchParams.get('category_id');
     const search = searchParams.get('search');
     const pageRaw = searchParams.get('page');
@@ -35,13 +35,19 @@ export async function GET(req: NextRequest) {
     // Apply filters
     if (status) filter.status = status;
     if (brand_id) filter.brand_id = brand_id;
-    if (category_id) filter.category_ids = category_id;
-    if (search) filter.name = { $regex: search, $options: 'i' };
+    if (manufacturer_id) filter.manufacturer_id = manufacturer_id;
+    if (category_id) filter.categories = category_id;
+    if (search) filter['product_name.vi'] = { $regex: search, $options: 'i' };
 
     const skip = (page - 1) * limit;
 
     const [products, total] = await Promise.all([
-      Product.find(filter).skip(skip).limit(limit),
+      Product.find(filter)
+        .populate('brand_id')
+        .populate('manufacturer_id')
+        .populate('categories')
+        .skip(skip)
+        .limit(limit),
       Product.countDocuments(filter)
     ]);
 
@@ -73,15 +79,7 @@ export async function GET(req: NextRequest) {
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const parse = ProductCreateSchema.safeParse(body);
-    if (!parse.success) {
-      return NextResponse.json({
-        success: false,
-        code: 'VALIDATION_ERROR',
-        message: parse.error.errors.map(e => e.message).join(', '),
-        status: 400,
-      }, { status: 400 });
-    }
+    
     await connectDb();
     const exists = await Product.findOne({ slug: body.slug });
     if (exists) {

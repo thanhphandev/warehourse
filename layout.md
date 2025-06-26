@@ -1,148 +1,104 @@
-Trang chủ của một website **E-Commerce (thương mại điện tử)** thường được thiết kế theo các section rõ ràng để **thu hút, giữ chân người dùng và tăng chuyển đổi**. Dưới đây là danh sách các section **thường gặp nhất**, được sắp xếp theo thứ tự từ trên xuống dưới (ưu tiên UX/UI và marketing):
+
+
+Bạn là một chuyên gia UI/UX kiêm copywriter cho thương mại điện tử. Hãy viết nội dung cho **trang chủ website E-Commerce thực phẩm khô Việt Nam xuất khẩu**, theo cấu trúc rõ ràng dưới đây. Sử dụng dữ liệu **mock** đã cung cấp chính xác (brand, sản phẩm).
+
+Yêu cầu:
+
+* Nội dung phải **gây ấn tượng mạnh về thương hiệu, sản phẩm và khuyến mãi**
+* Ngôn ngữ: **song ngữ Việt – Anh**
+* Style: **thân thiện, rõ ràng, dễ đọc**
+* Gắn đúng dữ liệu từ mock schema
 
 ---
 
-## ✅ **1. Hero Banner (Băng rôn lớn ở đầu)**
+### 🔷 Schema layout:
 
-* Slide ảnh/ảnh tĩnh quảng cáo các khuyến mãi hot nhất.
-* CTA lớn: “Shop Now”, “View Collection”, “Ưu đãi đến 50%”.
-* Có thể là carousel tự động.
+#### **1. Hero Banner**
 
----
+```json
+{
+  "title_vi": "Ưu đãi lên đến 50% cho các sản phẩm truyền thống Việt",
+  "title_en": "Up to 50% OFF on traditional Vietnamese specialties",
+  "cta_text_vi": "Khám phá ngay",
+  "cta_text_en": "Shop Now",
+  "image": "https://link-to-hero-banner.jpg",
+  "carousel": true
+}
+```
 
-## ✅ **2. Categories / Danh mục nổi bật**
+#### **2. Categories**
 
-* Icon hoặc hình ảnh của các danh mục: Thời trang nam, nữ, Điện thoại, Mỹ phẩm,...
-* Dễ click, dễ điều hướng.
-* Có thể dùng grid 2–6 cột.
+```json
+[
+  {
+    "name_vi": "Bánh tráng",
+    "name_en": "Rice Paper",
+    "image": "https://link-to-category-image.jpg",
+    "slug": "banh-trang"
+  },
+  {
+    "name_vi": "Trái cây sấy",
+    "name_en": "Dried Fruits",
+    "image": "https://link-to-category-image.jpg",
+    "slug": "trai-cay-say"
+  }
+]
+```
 
----
+#### **3. Featured Products**
 
-## ✅ **3. Flash Sale / Deal sốc**
+Từ dữ liệu `sản phẩm`, render:
 
-* Countdown timer (đếm ngược).
-* Sản phẩm giảm giá mạnh trong khung giờ.
-* Slide ngang có nút điều hướng.
+```json
+[
+  {
+    "name_vi": "Bánh tráng mè đen nướng (40g)",
+    "name_en": "Grilled black sesame rice crackers (40g)",
+    "slug": "banh-trang-me-den-nuong-40g",
+    "image": "https://i.postimg.cc/LXWr50kM/gaomeden.png",
+    "brand_name": "PHUONG NGUYEN VIET NAM CO., LTD",
+    "brand_logo": "https://cdnv2.tgdd.vn/...logo.jpg",
+    "description_vi": "Giòn rụm – béo ngậy – truyền thống Việt",
+    "description_en": "Crispy – rich – authentic Vietnamese taste",
+    "tag": "bestseller"
+  }
+]
+```
 
----
+#### **4. Brands Section**
 
-## ✅ **4. Sản phẩm nổi bật (Featured Products)**
+Từ `brand` mock, render:
 
-* Có thể chia theo:
-
-  * **Bán chạy nhất**
-  * **Mới ra mắt**
-  * **Được đánh giá cao**
-* Slide hoặc grid layout.
-
----
-
-## ✅ **5. Ưu đãi / Ưu điểm thương hiệu**
-
-* 3–4 icon nhỏ với mô tả:
-
-  * Miễn phí giao hàng
-  * Đổi trả 7 ngày
-  * Bảo hành chính hãng
-  * Hỗ trợ 24/7
-
----
-
-## ✅ **6. Banner nhỏ quảng bá chiến dịch**
-
-* Banner giữa trang: “Back to School”, “Giảm 10% khi mua 2 sp”, “Mùa hè rực rỡ”...
-* Dùng hình ảnh hấp dẫn.
-
----
-
-## ✅ **7. Bộ sưu tập theo mùa / theo phong cách**
-
-* “Hè năng động”, “Cổ điển”, “Tối giản”,...
-* Hiển thị ảnh lớn, layout 1–2 sp mỗi dòng.
-
----
-
-## ✅ **8. Thương hiệu nổi bật (Brands)**
-
-* Logo các thương hiệu nổi tiếng: Apple, Samsung, Adidas,...
-* Có thể click để xem sp của thương hiệu đó.
-
----
-
-## ✅ **9. Blog / Tips / Cẩm nang**
-
-* Tăng SEO và giữ chân người dùng.
-* “5 cách chọn son phù hợp”, “Cách bảo quản đồ da”,...
-
----
-
-## ✅ **10. Đánh giá khách hàng / Social Proof**
-
-* Slide chứa lời đánh giá (testimonial)
-* Avatar + tên + nội dung đánh giá
-* Ảnh người thật (nếu có) giúp tăng tin tưởng
-
----
-
-## ✅ **11. Đăng ký nhận bản tin (Newsletter)**
-
-* Email input + CTA: "Nhận ưu đãi mỗi tuần"
-* Có thể tặng mã giảm giá khi đăng ký
-
----
-
-## ✅ **12. Ứng dụng di động / QR tải app**
-
-* Link tải App Store / CH Play
-* QR code để scan nhanh
-
----
-
-## ✅ **13. Footer**
-
-* Liên hệ
-* Chính sách (giao hàng, đổi trả, bảo mật…)
-* Mạng xã hội
-* Logo ngân hàng & thanh toán
-
----
-
-## 🎁 Bonus: Các section thêm nếu có
-
-* **Lọc sản phẩm theo tag**: "Dưới 500K", "Tặng mẹ", "Hàng mới"
-* **Đếm ngược ra mắt sản phẩm mới**
-* **Video review**
-* **Ảnh từ khách hàng (Instagram Feed)**
-
----
-
-## 🧩 Gợi ý cấu trúc layout tổng thể (giao diện thường gặp)
-
-```plaintext
-┌──────────────────────────────┐
-│ Header (logo, search, cart…)│
-├──────────────┬──────────────┤
-│ Hero Banner  │ Flash Sale   │
-├──────────────┴──────────────┤
-│ Categories / Popular Tags   │
-├──────────────────────────────┤
-│ Featured Products            │
-├──────────────────────────────┤
-│ Banner quảng bá chiến dịch  │
-├──────────────────────────────┤
-│ New Arrivals / Best Sellers │
-├──────────────────────────────┤
-│ Top Brands                  │
-├──────────────────────────────┤
-│ Customer Reviews            │
-├──────────────────────────────┤
-│ Blog / Tips                 │
-├──────────────────────────────┤
-│ Newsletter Signup           │
-├──────────────────────────────┤
-│ Footer                      │
-└──────────────────────────────┘
+```json
+[
+  {
+    "name": "SPEVI FOOD CO., LTD",
+    "logo": "https://encrypted-tbn0.gstatic.com/...KrCG1Q&s",
+    "description": "Trái cây sấy xuất khẩu Mỹ, EU",
+    "slug": "spevi-food-co-ltd"
+  },
+  {
+    "name": "PHUONG NGUYEN VIET NAM CO., LTD",
+    "logo": "https://cdnv2.tgdd.vn/...logo.jpg",
+    "description": "Bánh tráng truyền thống Bình Định",
+    "slug": "phuong-nguyen-viet-nam-co-ltd"
+  }
+]
 ```
 
 ---
 
+### 📌 Format yêu cầu:
+
+* **Output: JSON hoặc HTML section-ready**
+* Dễ tích hợp vào CMS hoặc framework frontend (NextJS, React, Vue...)
+* Giữ nguyên các trường `slug`, `image`, `logo` từ mock data
+* Gợi ý: **Đặt tag “bestseller” / “new arrival” / “top rated” tương ứng để gợi ý UI icon sau này**
+
+---
+
+Kết thúc prompt.
+
+---
+
+Nếu bạn cần mình viết sẵn nội dung từ prompt trên để kiểm thử, hoặc muốn prompt này ở dạng `GraphQL`, `REST`, `Markdown`, hoặc `Tailwind JSX`, hãy nói nhé!

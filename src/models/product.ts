@@ -53,34 +53,23 @@ export interface IAdditionalInfoItem {
   value_en: string;
 }
 
-export interface ICookingInstructions {
-  vi?: {
-    boil?: string;
-    hotpot?: string;
-    stir_fry?: string;
-  };
-  en?: {
-    boil?: string;
-    hotpot?: string;
-    stir_fry?: string;
-  };
-}
 export interface IProduct extends Document {
   sku: string;
   brand_id: mongoose.Types.ObjectId;
   slug: string;
   manufacturer_id?: mongoose.Types.ObjectId | null;
+  categories: mongoose.Types.ObjectId[];
   product_name: IProductName;
   description?: IDescription;
   ingredients: IIngredients;
   net_weight: INetWeight;
+  image: string;
   shelf_life: IShelfLife;
   usage_instructions: IInstructions;
   storage_instructions: IStorageInstructions;
   dietary_info: IDietaryInfo;
   packaging_details?: IDescription;
   additional_info: IAdditionalInfoItem[];
-  cooking_instructions?: ICookingInstructions;
   created_at: Date;
   updated_at: Date;
 }
@@ -92,7 +81,7 @@ const ProductSchema = new Schema<IProduct>(
 
     brand_id: { type: Schema.Types.ObjectId, ref: 'Brand', required: true },
     manufacturer_id: { type: Schema.Types.ObjectId, ref: 'Manufacturer', default: null },
-
+    categories: [{ type: Schema.Types.ObjectId, ref: 'Category', required: true }],
     product_name: {
       vi: { type: String, required: true },
       en: { type: String, required: true }
@@ -112,6 +101,7 @@ const ProductSchema = new Schema<IProduct>(
       value: { type: Number, required: true },
       unit: { type: String, required: true }
     },
+    image: { type: String, required: true },
 
     shelf_life: {
       value: { type: Number, required: true },
@@ -152,19 +142,6 @@ const ProductSchema = new Schema<IProduct>(
         value_en: String
       }
     ],
-
-    cooking_instructions: {
-      vi: {
-        boil: { type: String, default: null },
-        hotpot: { type: String, default: null },
-        stir_fry: { type: String, default: null }
-      },
-      en: {
-        boil: { type: String, default: null },
-        hotpot: { type: String, default: null },
-        stir_fry: { type: String, default: null }
-      }
-    },
     created_at: { type: Date, default: Date.now },
     updated_at: { type: Date, default: Date.now }
   },
