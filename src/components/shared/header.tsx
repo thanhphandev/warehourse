@@ -4,14 +4,6 @@ import React from 'react';
 import { User, Search, ChevronDown, Menu, Languages } from 'lucide-react'; // Added Menu icon
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Avatar, AvatarFallback } from '@/components/ui/avatar';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger
-} from '@/components/ui/dropdown-menu';
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import {
   Sheet,
@@ -44,16 +36,6 @@ interface HeaderProps {
 
 const Header = ({ categories, brands, manufacturers }: HeaderProps) => {
   const t = useTranslations('HomePage');
-  // Process categories
-  const parentCategories = categories.filter((cat: ICategory) => cat.ancestors.length == 0) || [];
-  const childCategories = categories.filter((cat: ICategory) => cat.ancestors.length > 0) || [];
-
-  const categoriesWithChildren = parentCategories.map((parent: ICategory) => {
-    const children = childCategories.filter((child: ICategory) =>
-      child.parent_id?.toString() === (parent._id as string).toString()
-    );
-    return { ...parent, children };
-  });
 
   return (
     <header className="top-0 z-50 w-full border-b bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 backdrop-blur supports-[backdrop-filter]:bg-blue-600/95">
@@ -116,14 +98,14 @@ const Header = ({ categories, brands, manufacturers }: HeaderProps) => {
                       <AccordionItem value="categories">
                         <AccordionTrigger className="text-lg">{t("categories")}</AccordionTrigger>
                         <AccordionContent className="pl-4">
-                          {categoriesWithChildren.length > 0 ? (
-                            categoriesWithChildren.map((cat) => (
+                          {categories.length > 0 ? (
+                            categories.map((cat) => (
                               <Link
                                 key={cat._id as string}
                                 href={`/products?category=${cat._id}`}
                                 className="block py-1 text-sm text-gray-700 hover:text-blue-600"
                               >
-                                {cat.name}
+                                {cat.name as string}
                               </Link>
                             ))
                           ) : (
@@ -200,7 +182,7 @@ const Header = ({ categories, brands, manufacturers }: HeaderProps) => {
         </div>
       </div>
 
-      <div className="hidden md:block border-t border-white/10 bg-white shadow-sm">
+      <div className="relative z-40 hidden md:block border-t border-white/10 bg-white shadow-sm">
         <div className="container mx-auto px-4 py-4">
           <div className="flex gap-8 items-center justify-start">
 
@@ -214,13 +196,13 @@ const Header = ({ categories, brands, manufacturers }: HeaderProps) => {
               </button>
               <div className="absolute left-0 top-full mt-1 w-64 bg-white border border-gray-200 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                 <ul className="py-2">
-                  {categoriesWithChildren.map((cat) => (
+                  {categories.map((cat) => (
                     <li key={cat._id as string}>
                       <Link
                         href={`/products?category=${cat._id}`}
                         className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
                       >
-                        {cat.name}
+                        {cat.name as string}
                       </Link>
                     </li>
                   ))}
@@ -260,7 +242,7 @@ const Header = ({ categories, brands, manufacturers }: HeaderProps) => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
-              <div className="absolute left-0 top-full mt-1 w-64 bg-white border border-gray-200 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+              <div className="absolute left-0 top-full mt-1 w-64 bg-white border border-gray-200 rounded-md shadow-lg opacity-0 group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                 <ul className="py-2">
                   {manufacturers.map((mfr) => (
                     <li key={mfr.slug}>

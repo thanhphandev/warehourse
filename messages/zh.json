@@ -6,7 +6,15 @@
     "linkAuth": "登录或注册",
     "categories": "分类",
     "brands": "品牌",
-    "manufacturers": "制造商"
+    "manufacturers": "制造商",
+    "featuredProducts": {
+      "title": "精选产品",
+      "subtitle": "发现我们为您精心挑选的商品"
+    },
+    "categoriesSection": {
+      "subtitle": "产品分类",
+      "description": "探索越南特色产品"
+    }
   },
   "auth": {
     "login": {
@@ -96,13 +104,30 @@
     "copyright": "© {year} Warehouse。保留所有权利。"
   },
   "cart": {
-  "title": "购物车",
-  "empty": "您的购物车是空的",
-  "total": "总计",
-  "checkout": "前往结账",
-  "cleared": "清空购物车",
-  "items": "件商品",
-  "loading": "加载中..."
-}
-
+    "title": "购物车",
+    "empty": "您的购物车是空的",
+    "total": "总计",
+    "checkout": "前往结账",
+    "cleared": "清空购物车",
+    "items": "件商品",
+    "loading": "加载中..."
+  },
+  "BrandCarousel": {
+    "title": "我们的品牌",
+    "subtitle": "致力于质量和食品安全"
+  },
+  "Product": {
+    "products": "产品",
+    "netWeight": "净重",
+    "ingredients": "成分",
+    "description": "描述",
+    "addToCart": "添加到购物车",
+    "contact": "联系我们",
+    "shieldLife": "保质期"
+  },
+  "TimeUnits": {
+    "months": "月",
+    "days": "天",
+    "years": "年"
+  }
 }

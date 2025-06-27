@@ -7,7 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import { useCartStore } from '@/app/stores/cartStore';
 import { useState } from 'react';
 import Link from 'next/link';
-import { IProduct } from '@/models/product2';
+import { IProduct } from '@/models/product';
 import { IProductVariant } from '@/models/product_variant';
 
 interface ProductCardProps {

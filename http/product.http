@@ -1,9 +1,9 @@
 ### Product List
-GET http://localhost:3000/api/products
+GET http://localhost:3000/api/products?lang=vi
 Accept: application/json
 
 ### Product List with filter
-GET http://localhost:3000/api/products?brand_id={{brand_id}}&categories={{category_id}}&search={{search}}&page=1&limit=20
+GET http://localhost:3000/api/products?lang?={{en}}brand_id={{brand_id}}&categories={{category_id}}&search={{search}}&page=1&limit=20
 Accept: application/json
 
 ### Product Detail by ID
@@ -19,8 +19,8 @@ POST http://localhost:3000/api/products
 Content-Type: application/json
 
 {
-  "sku": "PN-BTMDN-40G",
-  "slug": "banh-trang-me-den-nuong-40g",
+  "sku": "PN-BffTMDN-40G",
+  "slug": "banh-trang-mse-den-vang-40g",
   "brand_id": "685bb21bad49078d4fe72a04",
   "manufacturer_id": "685d02a504c55be8bbbd08fc",
   "categories": ["685d04aa04c55be8bbbd0903"],

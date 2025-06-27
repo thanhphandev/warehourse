@@ -6,7 +6,15 @@
     "linkAuth": "Đăng nhập hoặc Đăng ký",
     "categories": "Danh mục",
     "brands": "Thương hiệu",
-    "manufacturers": "Nhà cung cấp"
+    "manufacturers": "Nhà cung cấp",
+    "featuredProducts": {
+      "title": "Sản phẩm nổi bật",
+      "subtitle": "Khám phá những sản phẩm được yêu thích nhất"
+    },
+    "categoriesSection": {
+      "subtitle": "Danh mục sản phẩm",
+      "description": "Khám phá các sản phẩm đặc sản Việt Nam"
+    }
   },
   "auth": {
     "login": {
@@ -129,5 +137,23 @@
     "fillAllFields": "Vui lòng điền đầy đủ thông tin giao hàng.",
     "success": "Đặt hàng thành công!",
     "error": "Đã xảy ra lỗi. Vui lòng thử lại."
+  },
+  "BrandCarousel": {
+    "title": "Thương hiệu của chúng tôi",
+    "subtitle": "Cam kết chất lượng và an toàn thực phẩm"
+  },
+  "Product": {
+    "products": "Sản phẩm",
+    "netWeight": "Khối lượng tịnh",
+    "ingredients": "Thành phần",
+    "description": "Mô tả",
+    "addToCart": "Thêm vào giỏ hàng",
+    "contact": "Liên hệ",
+    "shieldLife": "Thời hạn sử dụng"
+  },
+  "TimeUnits": {
+    "months": "tháng",
+    "days": "ngày",
+    "years": "năm"
   }
 }

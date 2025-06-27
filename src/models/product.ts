@@ -1,4 +1,7 @@
 import mongoose, { Schema, Document, Model } from 'mongoose';
+import { ICategory } from '@/models/category';
+import { IManufacturer } from './manufacturer';
+import { IBrand } from './brand';
 
 export interface IProductName {
   vi: string;
@@ -22,7 +25,7 @@ export interface INetWeight {
 
 export interface IShelfLife {
   value: number;
-  unit: string; // e.g., "months", "days"
+  unit: "months" | "days" | "years";
 }
 
 export interface IInstructions {
@@ -55,12 +58,13 @@ export interface IAdditionalInfoItem {
 
 export interface IProduct extends Document {
   sku: string;
-  brand_id: mongoose.Types.ObjectId;
+  brand_id: IBrand;
   slug: string;
-  manufacturer_id?: mongoose.Types.ObjectId | null;
-  categories: mongoose.Types.ObjectId[];
-  product_name: IProductName;
-  description?: IDescription;
+  price: number;
+  manufacturer_id?: IManufacturer | null;
+  categories: ICategory[];
+  product_name: IProductName | string;
+  description?: IDescription | null | string;
   ingredients: IIngredients;
   net_weight: INetWeight;
   image: string;
@@ -78,7 +82,7 @@ const ProductSchema = new Schema<IProduct>(
   {
     sku: { type: String, required: true, unique: true },
     slug: { type: String, required: true, unique: true },
-
+    price: { type: Number, required: true, default: 0 },
     brand_id: { type: Schema.Types.ObjectId, ref: 'Brand', required: true },
     manufacturer_id: { type: Schema.Types.ObjectId, ref: 'Manufacturer', default: null },
     categories: [{ type: Schema.Types.ObjectId, ref: 'Category', required: true }],
@@ -144,8 +148,7 @@ const ProductSchema = new Schema<IProduct>(
     ],
     created_at: { type: Date, default: Date.now },
     updated_at: { type: Date, default: Date.now }
-  },
-  { timestamps: true }
+  }
 );
 
 export default mongoose.models.Product || mongoose.model<IProduct>('Product', ProductSchema);

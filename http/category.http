@@ -1,15 +1,56 @@
+
+
+### Create category: Bánh tráng & Bánh phồng
 POST http://localhost:3000/api/category
 Content-Type: application/json
 
 {
-    "name": "Noodles",
-    "slug": "noodles",
-    "parent_id": null,
-    "ancestors": [],
-    "image": null,
-    "is_active": true
-  }
+  "name": { "vi": "Bánh tráng & Bánh phồng", "en": "Rice Crackers & Chips" },
+  "slug": "rice-crackers",
+  "description": { "vi": "Bánh tráng giòn tan và bánh phồng thơm ngon", "en": "Crispy rice crackers and delicious chips" },
+  "image": "https://images.pexels.com/photos/1633525/pexels-photo-1633525.jpeg",
+  "is_active": true
+}
+
+### Create category: Mì & Bún khô
+POST http://localhost:3000/api/category
+Content-Type: application/json
+
+{
+  "name": { "vi": "Mì & Bún khô", "en": "Noodles & Dried Vermicelli" },
+  "slug": "noodles",
+  "description": { "vi": "Mì gói và bún khô chất lượng cao", "en": "High-quality instant noodles and dried vermicelli" },
+  "image": "https://images.pexels.com/photos/884600/pexels-photo-884600.jpeg",
+  "is_active": true
+}
+
+### Create category: Gia vị & Nước chấm
+POST http://localhost:3000/api/category
+Content-Type: application/json
+
+{
+  "name": { "vi": "Gia vị & Nước chấm", "en": "Spices & Sauces" },
+  "slug": "spices",
+  "description": { "vi": "Gia vị truyền thống và nước chấm đậm đà", "en": "Traditional spices and rich dipping sauces" },
+  "image": "https://garis.vn/uploaded/2020/11/gia-vi-.jpg",
+  "is_active": true
+}
+
+### Create category: Đặc sản miền Trung
+POST http://localhost:3000/api/category
+Content-Type: application/json
+
+{
+  "name": { "vi": "Đặc sản miền Trung", "en": "Central Vietnam Specialties" },
+  "slug": "specialties",
+  "description": { "vi": "Những món đặc sản tinh túy miền Trung", "en": "Exquisite Central Vietnam specialties" },
+  "image": "https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg",
+  "is_active": true
+}
 
 ### GET ALL CATEGORIES
-GET http://localhost:3000/api/category
+GET http://localhost:3000/api/category?lang=en
 Content-Type: application/json
+
+### Delete category by ID
+DELETE http://localhost:3000/api/category/685d04aa04c55be8bbbd0903

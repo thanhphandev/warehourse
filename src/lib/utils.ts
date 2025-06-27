@@ -21,6 +21,13 @@ export function formatCurrencyVND(amount: number): string {
   }).format(amount);
 }
 
+export function translateUnitTime(
+  unit: "months" | "days" | "years",
+  t: (key: string) => string
+): string {
+  return t(`${unit}`);
+}
+
 
 
 

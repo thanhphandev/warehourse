@@ -6,7 +6,15 @@
     "linkAuth": "Signin or Register",
     "categories": "Categories",
     "brands": "Brands",
-    "manufacturers": "Manufacturers"
+    "manufacturers": "Manufacturers",
+    "featuredProducts": {
+      "title": "Featured Products",
+      "subtitle": "Discover our top picks for you"
+    },
+    "categoriesSection": {
+      "subtitle": "Product Categories",
+      "description": "Explore Vietnamese specialty products"
+    }
   },
   "auth": {
     "login": {
@@ -137,6 +145,24 @@
     "ward": "Ward",
     "enterCode": "Enter code",
     "itemQuantity": "Qty"
+  },
+  "BrandCarousel": {
+    "title": "Our Brand",
+    "subtitle": "Committed to quality and food safety"
+  },
+  "Product": {
+    "products": "Products",
+    "netWeight": "Net Weight",
+    "ingredients": "Ingredients",
+    "description": "Description",
+    "addToCart": "Add to Cart",
+    "contact": "Contact us",
+    "shieldLife": "Shield Life"
+  },
+  "TimeUnits": {
+    "months": "months",
+    "days": "days",
+    "years": "years"
   }
 
 }
